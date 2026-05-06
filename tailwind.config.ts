@@ -27,7 +27,12 @@ const config: Config = {
         'dark-foreground': 'var(--dark-foreground)',
       },
       borderRadius: {
-        DEFAULT: 'var(--radius)',
+        DEFAULT: '0px',
+        none: '0px',
+        sm: '2px',
+        md: '3px',
+        lg: '4px',
+        full: '9999px',
       },
     },
   },

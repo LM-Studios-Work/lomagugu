@@ -29,7 +29,7 @@ export default function CTABanner() {
             </p>
             <a
               href="#"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground text-sm font-sans font-medium px-6 py-3 rounded hover:bg-accent transition-colors"
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground text-sm font-sans font-medium px-6 py-3 hover:bg-accent transition-colors"
             >
               Get Started <ArrowRight size={15} />
             </a>

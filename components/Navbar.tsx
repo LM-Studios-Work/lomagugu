@@ -32,7 +32,7 @@ export default function Navbar() {
           </a>
           <a
             href="#"
-            className="text-sm font-sans bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-accent transition-colors"
+            className="text-sm font-sans bg-primary text-primary-foreground px-4 py-2 hover:bg-accent transition-colors"
           >
             Registration
           </a>
@@ -56,8 +56,8 @@ export default function Navbar() {
           <a href="#properties" className="text-white text-sm py-2 border-b border-white/10">Property List</a>
           <a href="#contact" className="text-white text-sm py-2 border-b border-white/10">Contact Us</a>
           <div className="flex gap-3 pt-2">
-            <a href="#" className="text-white text-sm border border-white/40 px-4 py-2 rounded">Login</a>
-            <a href="#" className="bg-primary text-white text-sm px-4 py-2 rounded">Registration</a>
+            <a href="#" className="text-white text-sm border border-white/40 px-4 py-2">Login</a>
+            <a href="#" className="bg-primary text-white text-sm px-4 py-2">Registration</a>
           </div>
         </div>
       )}

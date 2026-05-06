@@ -41,43 +41,35 @@ export default function About() {
             </p>
           </div>
 
-          {/* Right – feature cards */}
+          {/* Right – feature cards: icon ABOVE text, thin border, no icon box */}
           <div className="flex-1 flex flex-col gap-3">
             {features.map(({ icon: Icon, title, description, dark }) => (
               <div
                 key={title}
-                className={`flex items-start gap-4 px-5 py-4 rounded ${
+                className={`px-5 py-5 ${
                   dark
                     ? 'bg-dark text-dark-foreground'
                     : 'border border-border bg-card text-card-foreground'
                 }`}
               >
-                <div
-                  className={`mt-0.5 shrink-0 w-8 h-8 flex items-center justify-center rounded-sm ${
-                    dark ? 'bg-white/10' : 'bg-muted'
+                <Icon
+                  size={20}
+                  className={`mb-3 ${dark ? 'text-white' : 'text-foreground'}`}
+                />
+                <p
+                  className={`font-sans font-semibold text-sm mb-1 ${
+                    dark ? 'text-white' : 'text-foreground'
                   }`}
                 >
-                  <Icon
-                    size={16}
-                    className={dark ? 'text-white' : 'text-foreground'}
-                  />
-                </div>
-                <div>
-                  <p
-                    className={`font-sans font-semibold text-sm mb-0.5 ${
-                      dark ? 'text-white' : 'text-foreground'
-                    }`}
-                  >
-                    {title}
-                  </p>
-                  <p
-                    className={`font-sans text-xs leading-relaxed ${
-                      dark ? 'text-white/60' : 'text-muted-foreground'
-                    }`}
-                  >
-                    {description}
-                  </p>
-                </div>
+                  {title}
+                </p>
+                <p
+                  className={`font-sans text-xs leading-relaxed ${
+                    dark ? 'text-white/60' : 'text-muted-foreground'
+                  }`}
+                >
+                  {description}
+                </p>
               </div>
             ))}
           </div>

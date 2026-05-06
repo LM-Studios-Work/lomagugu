@@ -8,7 +8,7 @@ const listings = [
     location: 'New York City, USA',
     price: '$1,200,000',
     type: 'Apartment',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=300&q=80',
+    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=200&q=80',
     highlight: false,
   },
   {
@@ -17,7 +17,7 @@ const listings = [
     location: 'Miami Beach, USA',
     price: '$2,500,000',
     type: 'Villa',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=300&q=80',
+    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=200&q=80',
     highlight: true,
   },
   {
@@ -26,7 +26,7 @@ const listings = [
     location: 'Aspen, USA',
     price: '$1,200,000',
     type: 'Cabin',
-    image: 'https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=300&q=80',
+    image: 'https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=200&q=80',
     highlight: false,
   },
   {
@@ -35,7 +35,7 @@ const listings = [
     location: 'Boston, USA',
     price: '$1,800,000',
     type: 'Townhouse',
-    image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=300&q=80',
+    image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=200&q=80',
     highlight: false,
   },
   {
@@ -44,25 +44,28 @@ const listings = [
     location: 'Napa Valley, USA',
     price: '$3,000,000',
     type: 'Farmhouse',
-    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=300&q=80',
+    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=200&q=80',
     highlight: false,
   },
 ]
 
 export default function PropertyList() {
   return (
-    <section id="properties" className="py-20 bg-muted border-t border-border">
+    /* Light sage-green background matching the original */
+    <section
+      id="properties"
+      className="py-20 border-t border-border"
+      style={{ backgroundColor: 'var(--property-list-bg)' }}
+    >
       <div className="max-w-7xl mx-auto px-8">
-        {/* Header */}
-        <div className="flex items-start justify-between mb-4">
-          <div className="max-w-lg">
-            <h2 className="font-sans font-bold text-foreground text-3xl md:text-4xl leading-tight text-balance">
-              Discover Your Next Destination
-            </h2>
-          </div>
+        {/* Header row */}
+        <div className="flex items-start justify-between mb-3">
+          <h2 className="font-sans font-bold text-foreground text-3xl md:text-4xl leading-tight text-balance max-w-lg">
+            Discover Your Next Destination
+          </h2>
           <a
             href="#"
-            className="hidden md:flex items-center gap-1 text-sm font-sans text-foreground hover:text-primary transition-colors mt-1"
+            className="hidden md:inline text-sm font-sans text-foreground hover:text-primary transition-colors mt-2"
           >
             See All
           </a>
@@ -77,14 +80,17 @@ export default function PropertyList() {
           {listings.map((item) => (
             <article
               key={item.id}
-              className={`flex items-center gap-5 rounded p-4 ${
+              className={`flex items-center gap-5 p-4 ${
                 item.highlight
                   ? 'bg-primary text-primary-foreground'
                   : 'bg-card text-card-foreground border border-border'
               }`}
             >
-              {/* Thumbnail */}
-              <div className="relative w-20 h-16 rounded overflow-hidden shrink-0">
+              {/* Square thumbnail — slight rounding like original */}
+              <div
+                className="relative shrink-0 overflow-hidden"
+                style={{ width: 80, height: 72 }}
+              >
                 <Image
                   src={item.image}
                   alt={item.name}
@@ -114,7 +120,7 @@ export default function PropertyList() {
               </div>
 
               {/* Price + type */}
-              <div className="hidden md:block min-w-[180px]">
+              <div className="hidden md:block min-w-[200px]">
                 <p
                   className={`font-sans font-bold text-sm ${
                     item.highlight ? 'text-white' : 'text-foreground'
@@ -131,6 +137,7 @@ export default function PropertyList() {
                 </p>
               </div>
 
+              {/* Divider */}
               <div
                 className={`hidden md:block w-px h-10 mx-2 ${
                   item.highlight ? 'bg-white/20' : 'bg-border'
@@ -141,7 +148,7 @@ export default function PropertyList() {
               {/* CTA */}
               <a
                 href="#"
-                className={`flex items-center gap-1.5 text-xs font-sans font-medium shrink-0 hover:gap-2.5 transition-all ${
+                className={`flex items-center gap-1.5 text-xs font-sans font-medium shrink-0 whitespace-nowrap hover:gap-3 transition-all ${
                   item.highlight ? 'text-white' : 'text-foreground'
                 }`}
               >

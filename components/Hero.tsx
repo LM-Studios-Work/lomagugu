@@ -54,7 +54,7 @@ export default function Hero() {
         </div>
 
         {/* Search bar */}
-        <div className="bg-background rounded-t-lg px-6 py-4">
+        <div className="bg-background px-6 py-4">
           <div className="flex flex-wrap md:flex-nowrap items-center gap-4">
             {/* Type */}
             <div className="flex flex-col gap-0.5 min-w-[110px]">
@@ -86,7 +86,7 @@ export default function Hero() {
 
             {/* Search button */}
             <button
-              className="flex items-center gap-2 bg-primary text-primary-foreground text-sm font-sans font-medium px-5 py-2.5 rounded hover:bg-accent transition-colors ml-auto shrink-0"
+              className="flex items-center gap-2 bg-primary text-primary-foreground text-sm font-sans font-medium px-5 py-2.5 hover:bg-accent transition-colors ml-auto shrink-0"
               aria-label="Search properties"
             >
               <Search size={15} />

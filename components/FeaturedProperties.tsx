@@ -12,16 +12,16 @@ const properties = [
     price: '$4,200,000',
     type: 'Luxury Villa',
     badge: 'For Sale',
-    image: 'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=700&q=80',
   },
   {
     id: 2,
     name: 'Brooklyn Brownstone',
-    location: 'Quebec, USA',
-    price: '$2,800,000',
+    location: 'Dubai, UAE',
+    price: '$2,500,000',
     type: 'Historic Townhouse',
     badge: 'For Sale',
-    image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80',
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const properties = [
     price: '$25,000,000',
     type: 'Historic Villa',
     badge: 'For Sale',
-    image: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=700&q=80',
   },
   {
     id: 4,
@@ -39,13 +39,14 @@ const properties = [
     price: '$8,500,000',
     type: 'Mountain Estate',
     badge: 'For Sale',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=700&q=80',
   },
 ]
 
 export default function FeaturedProperties() {
   const [offset, setOffset] = useState(0)
-  const maxOffset = properties.length - 3
+  const visibleCount = 3
+  const maxOffset = properties.length - visibleCount
 
   const prev = () => setOffset((o) => Math.max(0, o - 1))
   const next = () => setOffset((o) => Math.min(maxOffset, o + 1))
@@ -60,46 +61,49 @@ export default function FeaturedProperties() {
               Featured Properties from Around the Globe
             </h2>
           </div>
-          <div className="md:max-w-xs">
-            <p className="font-sans text-muted-foreground text-sm leading-relaxed mb-4">
+          <div className="md:max-w-xs flex flex-col gap-4">
+            <p className="font-sans text-muted-foreground text-sm leading-relaxed">
               Discover a curated selection of exceptional properties from around the world.
               Each listing offers a unique opportunity to own a piece of the global real
               estate market.
             </p>
-            {/* Arrows */}
+            {/* Arrows — thin outline circles, no fill */}
             <div className="flex gap-2">
               <button
                 onClick={prev}
                 disabled={offset === 0}
                 aria-label="Previous"
-                className="w-8 h-8 flex items-center justify-center border border-border rounded-full text-foreground hover:bg-muted transition-colors disabled:opacity-30"
+                className="w-8 h-8 flex items-center justify-center border border-border text-foreground hover:border-foreground transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
+                style={{ borderRadius: '50%' }}
               >
-                <ChevronLeft size={16} />
+                <ChevronLeft size={14} strokeWidth={1.5} />
               </button>
               <button
                 onClick={next}
                 disabled={offset >= maxOffset}
                 aria-label="Next"
-                className="w-8 h-8 flex items-center justify-center border border-border rounded-full text-foreground hover:bg-muted transition-colors disabled:opacity-30"
+                className="w-8 h-8 flex items-center justify-center border border-border text-foreground hover:border-foreground transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
+                style={{ borderRadius: '50%' }}
               >
-                <ChevronRight size={16} />
+                <ChevronRight size={14} strokeWidth={1.5} />
               </button>
             </div>
           </div>
         </div>
 
-        {/* Cards */}
+        {/* Cards — zero border-radius, sharp edges */}
         <div className="overflow-hidden">
           <div
             className="flex gap-5 transition-transform duration-300"
-            style={{ transform: `translateX(calc(-${offset * (100 / 3 + 1.5)}%))` }}
+            style={{ transform: `translateX(calc(-${offset * (100 / visibleCount + 1.8)}%))` }}
           >
             {properties.map((p) => (
               <article
                 key={p.id}
                 className="min-w-[calc(33.333%-14px)] flex-shrink-0 cursor-pointer group"
               >
-                <div className="relative w-full aspect-[4/3] overflow-hidden rounded">
+                {/* Image — NO border-radius */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden">
                   <Image
                     src={p.image}
                     alt={p.name}
@@ -107,7 +111,8 @@ export default function FeaturedProperties() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
-                  <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-[11px] font-sans font-medium px-2 py-0.5 rounded-sm">
+                  {/* For Sale badge — square, dark green, sharp */}
+                  <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-[11px] font-sans font-medium px-2 py-0.5">
                     {p.badge}
                   </span>
                 </div>
@@ -121,9 +126,7 @@ export default function FeaturedProperties() {
                   </div>
                   <p className="font-sans text-foreground font-bold text-sm">
                     {p.price}{' '}
-                    <span className="font-normal text-muted-foreground">
-                      • {p.type}
-                    </span>
+                    <span className="font-normal text-muted-foreground">• {p.type}</span>
                   </p>
                 </div>
               </article>
