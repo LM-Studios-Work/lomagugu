@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
+  --primary: #2c5f45;
+  --primary-foreground: #ffffff;
+  --muted: #f7f8f7;
+  --muted-foreground: #6b7280;
+  --border: #e2e6e2;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --accent: #3a7a5a;
+  --accent-foreground: #ffffff;
+  --dark: #010101;
+  --dark-foreground: #ffffff;
+  --property-list-bg: #e7f8f0;
+  --view-details-btn: #1a3e2d;
+  --radius: 0rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-helvetica-neue), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hover state for property list CTA button */
+a[style*="backgroundColor: rgb(44, 107, 74)"] {
+  @apply hover:opacity-90 cursor-pointer;
+}
