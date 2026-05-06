@@ -14,9 +14,10 @@
   --card-foreground: #111111;
   --accent: #3a7a5a;
   --accent-foreground: #ffffff;
-  --dark: #181a17;
+  --dark: #010101;
   --dark-foreground: #ffffff;
-  --property-list-bg: #edf2ee;
+  --property-list-bg: #e7f8f0;
+  --view-details-btn: #1a3e2d;
   --radius: 0rem;
 }
 

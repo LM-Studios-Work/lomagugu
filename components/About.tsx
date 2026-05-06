@@ -53,7 +53,8 @@ export default function About() {
                 }`}
               >
                 <Icon
-                  size={20}
+                  size={22}
+                  strokeWidth={1.25}
                   className={`mb-3 ${dark ? 'text-white' : 'text-foreground'}`}
                 />
                 <p

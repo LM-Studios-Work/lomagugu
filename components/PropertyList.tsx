@@ -55,7 +55,7 @@ export default function PropertyList() {
     <section
       id="properties"
       className="py-20 border-t border-border"
-      style={{ backgroundColor: 'var(--property-list-bg)' }}
+      style={{ backgroundColor: '#e7f8f0' }}
     >
       <div className="max-w-7xl mx-auto px-8">
         {/* Header row */}
@@ -80,11 +80,12 @@ export default function PropertyList() {
           {listings.map((item) => (
             <article
               key={item.id}
-              className={`flex items-center gap-5 p-4 ${
+              className={`flex items-center gap-5 p-4 transition-colors ${
                 item.highlight
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-card text-card-foreground border border-border'
+                  ? 'text-white'
+                  : 'bg-card text-card-foreground border border-border hover:border-[#1a3e2d]'
               }`}
+              style={item.highlight ? { backgroundColor: '#1a3e2d' } : undefined}
             >
               {/* Square thumbnail — slight rounding like original */}
               <div
@@ -146,14 +147,24 @@ export default function PropertyList() {
               />
 
               {/* CTA */}
-              <a
-                href="#"
-                className={`flex items-center gap-1.5 text-xs font-sans font-medium shrink-0 whitespace-nowrap hover:gap-3 transition-all ${
-                  item.highlight ? 'text-white' : 'text-foreground'
-                }`}
-              >
-                View Details <ArrowRight size={13} />
-              </a>
+              {item.highlight ? (
+                <a
+                  href="#"
+                  className="flex items-center gap-1.5 text-xs font-sans font-semibold shrink-0 whitespace-nowrap px-5 py-2.5 text-white transition-colors"
+                  style={{ backgroundColor: '#2c6b4a' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#234f37')}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#2c6b4a')}
+                >
+                  View Details <ArrowRight size={13} />
+                </a>
+              ) : (
+                <a
+                  href="#"
+                  className="flex items-center gap-1.5 text-xs font-sans font-medium shrink-0 whitespace-nowrap text-foreground hover:text-primary transition-colors"
+                >
+                  View Details <ArrowRight size={13} />
+                </a>
+              )}
             </article>
           ))}
         </div>

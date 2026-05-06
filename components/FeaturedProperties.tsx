@@ -67,14 +67,13 @@ export default function FeaturedProperties() {
               Each listing offers a unique opportunity to own a piece of the global real
               estate market.
             </p>
-            {/* Arrows — thin outline circles, no fill */}
+            {/* Arrows — square bordered boxes, no radius */}
             <div className="flex gap-2">
               <button
                 onClick={prev}
                 disabled={offset === 0}
                 aria-label="Previous"
                 className="w-8 h-8 flex items-center justify-center border border-border text-foreground hover:border-foreground transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
-                style={{ borderRadius: '50%' }}
               >
                 <ChevronLeft size={14} strokeWidth={1.5} />
               </button>
@@ -83,7 +82,6 @@ export default function FeaturedProperties() {
                 disabled={offset >= maxOffset}
                 aria-label="Next"
                 className="w-8 h-8 flex items-center justify-center border border-border text-foreground hover:border-foreground transition-colors disabled:opacity-25 disabled:cursor-not-allowed"
-                style={{ borderRadius: '50%' }}
               >
                 <ChevronRight size={14} strokeWidth={1.5} />
               </button>
@@ -111,8 +109,8 @@ export default function FeaturedProperties() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
-                  {/* For Sale badge — square, dark green, sharp */}
-                  <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-[11px] font-sans font-medium px-2 py-0.5">
+                  {/* For Sale badge — white bg, dark green text, thin border */}
+                  <span className="absolute top-3 left-3 bg-white text-[#1a3e2d] border border-[#1a3e2d] text-[11px] font-sans font-medium px-2 py-0.5">
                     {p.badge}
                   </span>
                 </div>
