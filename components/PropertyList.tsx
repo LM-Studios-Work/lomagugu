@@ -150,10 +150,8 @@ export default function PropertyList() {
               {item.highlight ? (
                 <a
                   href="#"
-                  className="flex items-center gap-1.5 text-xs font-sans font-semibold shrink-0 whitespace-nowrap px-5 py-2.5 text-white transition-colors"
+                  className="flex items-center gap-1.5 text-xs font-sans font-semibold shrink-0 whitespace-nowrap px-5 py-2.5 text-white transition-all"
                   style={{ backgroundColor: '#2c6b4a' }}
-                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#234f37')}
-                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#2c6b4a')}
                 >
                   View Details <ArrowRight size={13} />
                 </a>
