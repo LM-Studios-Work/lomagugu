@@ -12,7 +12,6 @@ const navLinks = [
   { label: 'Property List', href: '/properties' },
   { label: 'Valuations', href: '/valuations' },
   { label: 'Book Viewing', href: '/book-viewing' },
-  { label: 'Contact Us', href: '/contact' },
 ]
 
 export default function Navbar() {
@@ -52,18 +51,12 @@ export default function Navbar() {
 
         {/* Actions */}
         <div className="hidden md:flex items-center gap-3">
-          <a
-            href="#"
-            className="text-sm font-sans text-white hover:opacity-75 transition-opacity px-3 py-1.5"
-          >
-            Login
-          </a>
-          <a
-            href="#"
+          <Link
+            href="/contact"
             className="text-sm font-sans bg-primary text-primary-foreground px-4 py-2 hover:bg-accent transition-colors"
           >
-            Registration
-          </a>
+            Contact Us
+          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -90,8 +83,13 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="flex gap-3 pt-2">
-            <a href="#" className="text-white text-sm border border-white/40 px-4 py-2">Login</a>
-            <a href="#" className="bg-primary text-white text-sm px-4 py-2">Registration</a>
+            <Link
+              href="/contact"
+              className="bg-primary text-white text-sm px-4 py-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              Contact Us
+            </Link>
           </div>
         </div>
       )}
