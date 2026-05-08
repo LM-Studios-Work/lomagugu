@@ -27,11 +27,11 @@ const faqs = [
 ]
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(0)
+  const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section className="bg-background border-t border-border py-16 md:py-[64px]">
-      <div className="mx-auto w-full max-w-[1056px] px-6 md:px-0">
+    <section className="border-t border-border bg-background pb-16 pt-[86px] md:pb-[64px] md:pt-[96px]">
+      <div className="mx-auto w-full max-w-[1124px] px-6 md:px-[54px]">
         <div className="grid gap-14 md:grid-cols-[390px_512px] md:justify-between">
           {/* Left */}
           <div className="max-w-[390px]">
@@ -52,7 +52,7 @@ export default function FAQ() {
                 <div key={i} className="border-b border-border">
                   <button
                     className={`flex w-full items-start justify-between gap-6 text-left ${
-                      i === 0 ? 'pb-[18px] pt-0' : 'py-[22px]'
+                      i === 0 ? 'pb-[22px] pt-0' : 'py-[22px]'
                     }`}
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
