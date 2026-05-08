@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Clock, User, MessageSquare, ArrowRight, Check } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, ArrowRight, Check } from 'lucide-react'
 
 const HERO_IMAGE =
   'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80'
@@ -32,7 +32,6 @@ export default function ContactContent() {
 
   return (
     <>
-      {/* ── Hero ── */}
       <section className="relative min-h-[580px] md:min-h-[560px] flex flex-col justify-end overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -58,39 +57,38 @@ export default function ContactContent() {
               </h1>
             </div>
             <p className="font-sans text-white/70 text-sm md:text-base leading-relaxed max-w-[380px] md:text-right md:mb-1">
-              Buying, selling, or simply exploring — our global specialists are ready to help.
+              Buying, selling, or simply exploring, our South African property team is ready to help.
             </p>
           </div>
         </div>
       </section>
 
-      {/* ── Info tiles (About.tsx card pattern) ── */}
       <section className="bg-background px-6 md:px-10 lg:px-[56px] pt-14 pb-0">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-14">
             {[
               {
                 icon: MapPin,
-                label: 'Headquarters',
-                value: '76 St. Commonwealth Blvd\nQueens, NY 10001, US',
+                label: 'Address',
+                value: 'Tyger Valley Office Park, Silverlakes, Pretoria',
                 dark: false,
               },
               {
                 icon: Phone,
                 label: 'Phone',
-                value: '+1 (212) 555-0191',
+                value: '+27 11 123 4567',
                 dark: false,
               },
               {
                 icon: Mail,
                 label: 'Email',
-                value: 'hello@dwella.com',
+                value: 'Admin@lomaguguproperties.co.za',
                 dark: true,
               },
               {
                 icon: Clock,
                 label: 'Office Hours',
-                value: 'Mon – Sat\n9:00 AM – 6:00 PM',
+                value: 'Mon - Sat\n9:00 AM - 6:00 PM',
                 dark: false,
               },
             ].map(({ icon: Icon, label, value, dark }) => (
@@ -127,7 +125,6 @@ export default function ContactContent() {
         </div>
       </section>
 
-      {/* ── Phone accent strip ── */}
       <section className="bg-primary px-6 md:px-10 lg:px-[56px] py-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
           <div>
@@ -135,15 +132,15 @@ export default function ContactContent() {
               Prefer to speak directly?
             </p>
             <p className="font-sans text-white font-bold text-3xl md:text-4xl leading-none tracking-tight">
-              +1 (212) 555-0191
+              +27 11 123 4567
             </p>
           </div>
           <div className="flex flex-col gap-1 md:text-right">
             <p className="font-sans text-sm text-white/75 leading-relaxed">
-              Mon – Sat: 9:00 AM – 6:00 PM
+              Mon - Sat: 9:00 AM - 6:00 PM
             </p>
             <a
-              href="tel:+12125550191"
+              href="tel:+27111234567"
               className="inline-flex items-center gap-2.5 border border-white/30 text-white font-sans text-sm font-medium px-6 py-3 hover:bg-white/10 transition-colors mt-2 md:self-end"
             >
               <Phone size={14} strokeWidth={1.5} /> Call Us Now
@@ -152,11 +149,8 @@ export default function ContactContent() {
         </div>
       </section>
 
-      {/* ── Contact form ── */}
       <section className="bg-background px-6 md:px-10 lg:px-[56px] py-20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-10 xl:gap-20">
-
-          {/* Left label column */}
           <aside>
             <p className="font-sans text-xs text-muted-foreground uppercase tracking-widest mb-3">
               Send a Message
@@ -168,7 +162,6 @@ export default function ContactContent() {
               Fill in the form and one of our advisors will respond within one business day.
             </p>
 
-            {/* Decorative stat block */}
             <div className="flex flex-col gap-3">
               <div className="bg-[#f7f7f7] px-6 py-5">
                 <p className="font-sans text-3xl font-bold text-foreground leading-none mb-1">
@@ -189,7 +182,6 @@ export default function ContactContent() {
             </div>
           </aside>
 
-          {/* Right — form */}
           <div>
             {submitted ? (
               <div className="flex flex-col items-start justify-center py-16">
@@ -217,8 +209,6 @@ export default function ContactContent() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-10">
-
-                {/* Name + phone */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div>
                     <label className="font-sans text-xs uppercase tracking-widest text-muted-foreground block mb-4">
@@ -239,7 +229,7 @@ export default function ContactContent() {
                     </label>
                     <input
                       type="tel"
-                      placeholder="+1 (___) ___-____"
+                      placeholder="+27 __ ___ ____"
                       value={form.phone}
                       onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
                       className="w-full border-b border-border bg-transparent font-sans text-base text-foreground placeholder-muted-foreground pb-3 focus:outline-none focus:border-foreground"
@@ -247,7 +237,6 @@ export default function ContactContent() {
                   </div>
                 </div>
 
-                {/* Email */}
                 <div>
                   <label className="font-sans text-xs uppercase tracking-widest text-muted-foreground block mb-4">
                     Email Address
@@ -262,7 +251,6 @@ export default function ContactContent() {
                   />
                 </div>
 
-                {/* Subject — pill buttons */}
                 <div>
                   <label className="font-sans text-xs uppercase tracking-widest text-muted-foreground block mb-5">
                     Subject
@@ -283,7 +271,6 @@ export default function ContactContent() {
                       </button>
                     ))}
                   </div>
-                  {/* Hidden required input for subject */}
                   <input
                     type="text"
                     required
@@ -294,7 +281,6 @@ export default function ContactContent() {
                   />
                 </div>
 
-                {/* Message */}
                 <div>
                   <label className="font-sans text-xs uppercase tracking-widest text-muted-foreground block mb-4">
                     Message
@@ -326,7 +312,31 @@ export default function ContactContent() {
         </div>
       </section>
 
-      {/* ── Bottom banner with photo ── */}
+      <section className="bg-background px-6 md:px-10 lg:px-[56px] pb-20">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-6">
+            <p className="font-sans text-xs text-muted-foreground uppercase tracking-widest mb-3">
+              Our Location
+            </p>
+            <h2 className="font-sans text-[32px] md:text-[38px] font-normal text-foreground leading-[1.15] text-balance">
+              Visit Our Pretoria Office.
+            </h2>
+          </div>
+          <div className="overflow-hidden border border-border bg-muted">
+            <iframe
+              src="https://www.google.com/maps?cid=2988617130411638649&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&hl=en&gl=ZA&source=embed&output=embed"
+              width="100%"
+              height="420"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Lomagugu Properties location"
+            />
+          </div>
+        </div>
+      </section>
+
       <section className="relative overflow-hidden min-h-[260px] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"

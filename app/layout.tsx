@@ -3,9 +3,9 @@ import { helveticaNeue } from '@/lib/fonts'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Dwella - Own Your World, One Property at a Time',
+  title: 'Lomagugu Properties - South African Property Experts',
   description:
-    'Dwella is your gateway to a world of real estate opportunities. With a global network of trusted partners, we connect buyers and sellers across borders.',
+    'Lomagugu Properties connects buyers, sellers, landlords, and investors with trusted property opportunities across South Africa.',
   icons: {
     icon: '/favicon.png',
     shortcut: '/favicon.png',

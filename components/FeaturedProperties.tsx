@@ -2,32 +2,35 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { MapPin, ChevronLeft, ChevronRight } from 'lucide-react'
 import { properties } from '@/lib/properties'
+import PropertyDetailsModal from './PropertyDetailsModal'
 
 export default function FeaturedProperties() {
   const [offset, setOffset] = useState(0)
+  const [selectedProperty, setSelectedProperty] = useState<(typeof properties)[number] | null>(null)
   const visibleCount = 3
-  const maxOffset = properties.length - visibleCount
+  const featured = properties.slice(0, 4)
+  const maxOffset = Math.max(0, featured.length - visibleCount)
 
   const prev = () => setOffset((o) => Math.max(0, o - 1))
   const next = () => setOffset((o) => Math.min(maxOffset, o + 1))
 
   return (
-    <section className="bg-background pb-[76px] pt-[27px]">
-      <div className="w-full px-6 sm:px-10 lg:px-[42px]">
+    <>
+      <section className="bg-background pb-[76px] pt-[27px]">
+        <div className="w-full px-6 sm:px-10 lg:px-[42px]">
         <div className="mb-[56px] grid grid-cols-1 gap-7 md:grid-cols-[minmax(0,560px)_300px] md:items-start md:justify-between">
           <div className="max-w-[545px]">
             <h2 className="font-sans text-[40px] font-normal leading-[1.16] tracking-normal text-foreground sm:text-[42px]">
-              Featured Properties from Around the Globe
+              Featured Properties Across South Africa
             </h2>
           </div>
           <div className="flex max-w-[300px] flex-col gap-[22px] md:justify-self-end">
             <p className="font-sans text-[13px] font-normal leading-[1.25] tracking-normal text-[#3f3f3f]">
-              Discover a curated selection of exceptional properties from around the world.
-              Each listing offers a unique opportunity to own a piece of the global real
-              estate market.
+              Discover a curated selection of exceptional properties in sought-after South
+              African locations. Each listing highlights strong local opportunities across
+              residential and commercial real estate.
             </p>
             <div className="flex gap-[10px]">
               <button
@@ -55,11 +58,12 @@ export default function FeaturedProperties() {
             className="flex gap-[16px] transition-transform duration-300"
             style={{ transform: `translateX(calc(-${offset * (100 / visibleCount + 1.72)}%))` }}
           >
-            {properties.slice(0, 4).map((p) => (
-              <Link
+            {featured.map((p) => (
+              <button
                 key={p.id}
-                href={`/properties/${p.id}`}
-                className="group min-w-[calc(33.333%-11px)] flex-shrink-0 cursor-pointer"
+                type="button"
+                onClick={() => setSelectedProperty(p)}
+                className="group min-w-[calc(33.333%-11px)] flex-shrink-0 cursor-pointer border-0 bg-transparent p-0 text-left"
               >
                 <article>
                   <div className="relative aspect-[1.082/1] w-full overflow-hidden">
@@ -90,11 +94,17 @@ export default function FeaturedProperties() {
                     </p>
                   </div>
                 </article>
-              </Link>
+              </button>
             ))}
           </div>
         </div>
       </div>
-    </section>
+      </section>
+
+      <PropertyDetailsModal
+        property={selectedProperty}
+        onClose={() => setSelectedProperty(null)}
+      />
+    </>
   )
 }

@@ -25,10 +25,10 @@ export default function Navbar() {
     <header className={isHome ? 'absolute top-0 left-0 right-0 z-50' : 'relative bg-dark z-50'}>
       <nav className="flex items-center justify-between px-8 py-5 max-w-7xl mx-auto">
         {/* Logo */}
-        <Link href="/" aria-label="Dwella Home" className="flex items-center gap-1">
+        <Link href="/" aria-label="Lomagugu Properties Home" className="flex items-center gap-1">
           <Image
             src="/Logo-removebg-preview.png"
-            alt="Dwella"
+            alt="Lomagugu Properties"
             width={210}
             height={84}
             className="h-[3.3rem] w-auto"

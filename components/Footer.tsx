@@ -3,25 +3,45 @@ import Link from 'next/link'
 
 const HOUSE_IMG = 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&q=80'
 
+const mainLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/#about' },
+  { label: 'Properties', href: '/properties' },
+  { label: 'Valuations', href: '/valuations' },
+  { label: 'Book Viewing', href: '/book-viewing' },
+  { label: 'Contact', href: '/contact' },
+]
+
+const supportLinks = [
+  { label: 'FAQ', href: '/#faq' },
+  { label: 'Property Valuations', href: '/valuations' },
+  { label: 'Schedule a Viewing', href: '/book-viewing' },
+  { label: 'Get in Touch', href: '/contact' },
+]
+
 export default function Footer() {
   return (
     <footer className="bg-background border-t border-border">
-      {/* Main footer grid */}
       <div className="max-w-7xl mx-auto px-8 py-14">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
-          {/* Menu */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
           <div>
-            <p className="font-sans font-semibold text-foreground text-sm mb-4">Menu</p>
+            <p className="font-sans font-semibold text-foreground text-sm mb-4">
+              Lomagugu Properties
+            </p>
+            <p className="font-sans text-xs text-muted-foreground leading-relaxed max-w-[250px]">
+              South African property guidance for buyers, sellers, landlords, and investors.
+            </p>
+          </div>
+
+          <div>
+            <p className="font-sans font-semibold text-foreground text-sm mb-4">Explore</p>
             <ul className="flex flex-col gap-2">
-              {[
-                { label: 'Home', href: '/' },
-                { label: 'About Us', href: '/#about' },
-                { label: 'Property List', href: '/properties' },
-                { label: 'Book Viewing', href: '/book-viewing' },
-                { label: 'Contact Us', href: '/contact' },
-              ].map(({ label, href }) => (
+              {mainLinks.map(({ label, href }) => (
                 <li key={label}>
-                  <Link href={href} className="font-sans text-xs text-muted-foreground hover:text-foreground transition-colors">
+                  <Link
+                    href={href}
+                    className="font-sans text-xs text-muted-foreground hover:text-foreground transition-colors"
+                  >
                     {label}
                   </Link>
                 </li>
@@ -29,64 +49,53 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Team */}
           <div>
-            <p className="font-sans font-semibold text-foreground text-sm mb-4">Team</p>
-            <ul className="flex flex-col gap-2">
-              {['Team', 'Careers', 'Privacy Policies', 'Partner Agreement'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="font-sans text-xs text-muted-foreground hover:text-foreground transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Back to top + address + social */}
-          <div className="col-span-2 md:col-span-1">
-            <p className="font-sans font-semibold text-foreground text-sm mb-4">Back to top</p>
-            <address className="font-sans not-italic text-xs text-muted-foreground leading-relaxed mb-6">
-              76 St. Commonwealth Blvd, Queens<br />
-              NY, United States, New York<br />
-              hello@hello.studio
-            </address>
-            <p className="font-sans font-semibold text-foreground text-sm mb-2">Follow Us</p>
-            <div className="flex gap-3">
-              {['Instagram', 'Twitter', 'LinkedIn'].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  className="font-sans text-xs text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {s}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* About */}
-          <div>
-            <p className="font-sans font-semibold text-foreground text-sm mb-4">About</p>
+            <p className="font-sans font-semibold text-foreground text-sm mb-4">Services</p>
             <ul className="flex flex-col gap-2 mb-6">
-              {['Popular', 'FAQ'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="font-sans text-xs text-muted-foreground hover:text-foreground transition-colors">
-                    {link}
-                  </a>
+              {supportLinks.map(({ label, href }) => (
+                <li key={label}>
+                  <Link
+                    href={href}
+                    className="font-sans text-xs text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {label}
+                  </Link>
                 </li>
               ))}
             </ul>
-            {/* House thumbnail */}
-            <div className="relative w-full aspect-[4/3] rounded overflow-hidden">
+            <address className="font-sans not-italic text-xs text-muted-foreground leading-relaxed">
+              Tyger Valley Office Park, Silverlakes, Pretoria
+              <br />
+              <a href="tel:+27111234567" className="hover:text-foreground transition-colors">
+                +27 11 123 4567
+              </a>
+              <br />
+              <a
+                href="mailto:Admin@lomaguguproperties.co.za"
+                className="hover:text-foreground transition-colors"
+              >
+                Admin@lomaguguproperties.co.za
+              </a>
+            </address>
+          </div>
+
+          <div>
+            <p className="font-sans font-semibold text-foreground text-sm mb-4">Visit Us</p>
+            <div className="relative w-full aspect-[4/3] rounded overflow-hidden mb-4">
               <Image
                 src={HOUSE_IMG}
-                alt="Featured property"
+                alt="Lomagugu Properties"
                 fill
                 className="object-cover"
                 sizes="200px"
               />
             </div>
+            <Link
+              href="/contact"
+              className="font-sans text-xs text-foreground hover:text-primary transition-colors"
+            >
+              View office location
+            </Link>
           </div>
         </div>
       </div>

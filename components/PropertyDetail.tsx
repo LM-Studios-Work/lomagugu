@@ -200,7 +200,7 @@ export default function PropertyDetail({ property }: Props) {
                 <CalendarDays size={28} strokeWidth={1.4} className="text-primary mb-4" />
                 <p className="font-sans text-base font-semibold text-foreground mb-2">Book a Viewing</p>
                 <p className="font-sans text-sm text-muted-foreground leading-relaxed mb-5">
-                  Schedule an in-person or virtual tour of this property with one of our specialists.
+                  Schedule a property viewing with one of our specialists.
                 </p>
                 <Link
                   href={`/book-viewing?property=${property.id}`}

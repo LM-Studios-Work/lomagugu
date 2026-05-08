@@ -17,12 +17,12 @@ const faqs = [
     a: 'All listings are verified by our in-house team. Look for the verified badge on each property card.',
   },
   {
-    q: 'What is your process for international property transactions?',
-    a: 'Our global legal partners handle cross-border transactions, ensuring compliance with local regulations.',
+    q: 'What is your process for buying or selling property in South Africa?',
+    a: 'We guide clients through each stage of the transaction, from listing or viewing to offer management and compliance with South African property requirements.',
   },
   {
     q: 'How can I schedule a property viewing?',
-    a: 'Click the "View Details" button on any listing and use the scheduling tool to book a virtual or in-person tour.',
+    a: 'Click the "View Details" button on any listing and use the scheduling tool to request a property viewing.',
   },
 ]
 
@@ -30,7 +30,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null)
 
   return (
-    <section className="border-t border-border bg-background pb-16 pt-[86px] md:pb-[64px] md:pt-[96px]">
+    <section id="faq" className="border-t border-border bg-background pb-16 pt-[86px] md:pb-[64px] md:pt-[96px]">
       <div className="mx-auto w-full max-w-[1124px] px-6 md:px-[54px]">
         <div className="grid gap-14 md:grid-cols-[390px_512px] md:justify-between">
           {/* Left */}

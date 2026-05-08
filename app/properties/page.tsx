@@ -3,15 +3,20 @@ import Footer from '@/components/Footer'
 import PropertiesContent from '@/components/PropertiesContent'
 
 export const metadata = {
-  title: 'Property List — Dwella',
-  description: 'Browse our full portfolio of luxury properties from around the world.',
+  title: 'Property List - Lomagugu Properties',
 }
 
-export default function PropertiesPage() {
+interface PropertiesPageProps {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>
+}
+
+export default async function PropertiesPage({ searchParams }: PropertiesPageProps) {
+  const resolvedSearchParams = await searchParams
+
   return (
     <main>
       <Navbar />
-      <PropertiesContent />
+      <PropertiesContent searchParams={resolvedSearchParams} />
       <Footer />
     </main>
   )

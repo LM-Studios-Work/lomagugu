@@ -3,8 +3,8 @@ import { Globe, Anchor, RefreshCw } from 'lucide-react'
 const features = [
   {
     icon: Globe,
-    title: 'Global Reach',
-    description: 'Access properties in diverse markets worldwide.',
+    title: 'Local Market Insight',
+    description: 'Access properties backed by strong knowledge of South African markets.',
     dark: false,
   },
   {
@@ -32,12 +32,12 @@ export default function About() {
               About Us
             </p>
             <h2 className="mb-[27px] max-w-[455px] font-sans text-[42px] font-normal leading-[1.46] tracking-normal text-foreground sm:text-[48px] sm:leading-[1.28] lg:text-[48px] lg:leading-[1.26]">
-              Your Global Real Estate Partner.
+              Your South African Property Partner.
             </h2>
             <p className="max-w-[595px] font-sans text-[17px] font-normal leading-[1.32] tracking-normal text-[#444444]">
-              Dwella is your gateway to a world of real estate opportunities. With a
-              global network of trusted partners, we&apos;re dedicated to connecting buyers
-              and sellers across borders.
+              We are a leading real estate company committed to helping you find the
+              perfect property. With years of experience and a deep understanding of
+              the market, we provide exceptional service and expert guidance.
             </p>
           </div>
 

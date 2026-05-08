@@ -26,7 +26,7 @@ export default function CTABanner() {
           <div className="md:max-w-[390px] md:pt-1">
             <p className="font-sans text-sm leading-snug text-white/70 mb-5">
               Encourage users to take the next step, whether it&apos;s contacting a real
-              estate agent, signing up for a property alert, or scheduling a virtual tour.
+              estate agent, signing up for a property alert, or scheduling a viewing.
             </p>
             <Link
               href="/contact"

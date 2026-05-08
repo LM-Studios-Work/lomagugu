@@ -15,9 +15,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { id } = await params
   const property = properties.find((p) => p.id === Number(id))
-  if (!property) return { title: 'Property Not Found — Dwella' }
+  if (!property) return { title: 'Property Not Found - Lomagugu Properties' }
   return {
-    title: `${property.name} — Dwella`,
+    title: `${property.name} - Lomagugu Properties`,
     description: property.description,
   }
 }

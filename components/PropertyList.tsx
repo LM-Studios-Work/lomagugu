@@ -1,22 +1,32 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, MapPin } from 'lucide-react'
 import { properties as allProperties } from '@/lib/properties'
+import PropertyDetailsModal from './PropertyDetailsModal'
 
 const listings = allProperties.slice(0, 5)
 
 export default function PropertyList() {
+  const [selectedProperty, setSelectedProperty] = useState<(typeof allProperties)[number] | null>(
+    null
+  )
+
   return (
-    <section id="properties" className="bg-[#e8f8f1] pb-20 pt-10 md:pb-[104px] md:pt-[58px]">
-      <div className="w-full px-6 md:px-[41px]">
+    <>
+      <section id="properties" className="bg-[#e8f8f1] pb-20 pt-10 md:pb-[104px] md:pt-[58px]">
+        <div className="w-full px-6 md:px-[41px]">
         <div className="mb-[47px] flex items-start justify-between">
           <div>
             <h2 className="max-w-[620px] font-sans text-[34px] font-semibold leading-[1.08] tracking-normal text-foreground md:text-[35px]">
-              Discover Your Next Destination
+              Discover Your Next Property
             </h2>
             <p className="mt-[25px] max-w-[620px] font-sans text-[13px] font-normal leading-[1.35] tracking-normal text-[#4b5554]">
-              Explore a diverse range of properties in popular locations around the world. Use our
-              intuitive filters to refine your search by property type, price range, and location.
+              Explore a diverse range of properties in sought-after South African locations.
+              Use our intuitive filters to refine your search by property type, price range,
+              and location.
             </p>
           </div>
           <Link
@@ -64,16 +74,23 @@ export default function PropertyList() {
 
               <div className="hidden h-[31px] w-px justify-self-center bg-[#9fb0a7] md:block" aria-hidden="true" />
 
-              <Link
-                href={`/properties/${item.id}`}
+              <button
+                type="button"
+                onClick={() => setSelectedProperty(item)}
                 className="mt-4 inline-flex h-[35px] w-[108px] shrink-0 items-center justify-center gap-[7px] border border-[#dbe9e3] bg-transparent font-sans text-[11px] font-semibold leading-none text-foreground transition-colors group-hover:border-[#173f2c] group-hover:bg-[#173f2c] group-hover:text-white md:mt-0 md:justify-self-end"
               >
                 View Details <ArrowRight size={14} strokeWidth={1.75} />
-              </Link>
+              </button>
             </article>
           ))}
         </div>
       </div>
-    </section>
+      </section>
+
+      <PropertyDetailsModal
+        property={selectedProperty}
+        onClose={() => setSelectedProperty(null)}
+      />
+    </>
   )
 }

@@ -3,8 +3,8 @@ import Footer from '@/components/Footer'
 import ContactContent from '@/components/ContactContent'
 
 export const metadata = {
-  title: 'Contact Us — Dwella',
-  description: 'Get in touch with Dwella\'s team of global real estate specialists.',
+  title: 'Contact Us - Lomagugu Properties',
+  description: 'Get in touch with Lomagugu Properties in Pretoria, South Africa.',
 }
 
 export default function ContactPage() {

@@ -40,6 +40,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Keep Tailwind output hot-reload stable during local dev. */
+
 /* Hover state for property list CTA button */
 a[style*="backgroundColor: rgb(44, 107, 74)"] {
   @apply hover:opacity-90 cursor-pointer;

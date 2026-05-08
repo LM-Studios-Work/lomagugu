@@ -10,7 +10,6 @@ import {
   Phone,
   MessageSquare,
   Home,
-  Video,
   MapPin,
   ArrowRight,
   Check,
@@ -26,21 +25,6 @@ const timeSlots = [
   '02:30 PM', '03:00 PM', '03:30 PM', '04:00 PM', '04:30 PM',
 ]
 
-const viewingTypes = [
-  {
-    id: 'in-person',
-    label: 'In-Person Tour',
-    icon: Home,
-    description: 'Walk the property with one of our senior agents present.',
-  },
-  {
-    id: 'virtual',
-    label: 'Virtual Tour',
-    icon: Video,
-    description: 'Live video walkthrough from anywhere in the world.',
-  },
-]
-
 function getTodayStr() {
   return new Date().toISOString().split('T')[0]
 }
@@ -50,7 +34,6 @@ function BookViewingForm() {
   const preselectedId = searchParams.get('property')
 
   const [submitted, setSubmitted] = useState(false)
-  const [viewingType, setViewingType] = useState('in-person')
   const [selectedTime, setSelectedTime] = useState('')
   const [form, setForm] = useState({
     property: preselectedId || '',
@@ -101,7 +84,7 @@ function BookViewingForm() {
           </h2>
           <p className="font-sans text-base text-white/65 leading-relaxed mb-10">
             Thank you, <span className="text-white font-semibold">{form.name}</span>.
-            Your {viewingType === 'virtual' ? 'virtual' : 'in-person'} viewing for{' '}
+            Your viewing request for{' '}
             <span className="text-white font-semibold">
               {selectedProperty?.name ?? 'the selected property'}
             </span>{' '}
@@ -146,7 +129,7 @@ function BookViewingForm() {
                 step: '02',
                 icon: CalendarDays,
                 title: 'Choose Date & Time',
-                body: 'Pick a slot from our available calendar — in-person or virtual.',
+                body: 'Pick a suitable slot from our available viewing calendar.',
                 dark: false,
               },
               {
@@ -205,51 +188,6 @@ function BookViewingForm() {
 
           {/* Left sidebar */}
           <aside className="flex flex-col gap-6">
-            {/* Viewing type cards */}
-            <div>
-              <p className="font-sans text-xs uppercase tracking-widest text-muted-foreground mb-5">
-                Viewing Type
-              </p>
-              <div className="flex flex-col gap-3">
-                {viewingTypes.map(({ id, label, icon: Icon, description }) => (
-                  <button
-                    key={id}
-                    type="button"
-                    onClick={() => setViewingType(id)}
-                    className={`flex items-start gap-5 px-5 py-5 text-left border transition-colors ${
-                      viewingType === id
-                        ? 'bg-[#000000] border-[#000000]'
-                        : 'bg-[#f7f7f7] border-transparent hover:border-foreground/20'
-                    }`}
-                  >
-                    <Icon
-                      size={22}
-                      strokeWidth={1.4}
-                      className={`mt-0.5 shrink-0 ${
-                        viewingType === id ? 'text-white' : 'text-foreground'
-                      }`}
-                    />
-                    <div>
-                      <p
-                        className={`font-sans text-sm font-semibold leading-none mb-1.5 ${
-                          viewingType === id ? 'text-white' : 'text-foreground'
-                        }`}
-                      >
-                        {label}
-                      </p>
-                      <p
-                        className={`font-sans text-xs leading-relaxed ${
-                          viewingType === id ? 'text-white/55' : 'text-muted-foreground'
-                        }`}
-                      >
-                        {description}
-                      </p>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-
             {/* Selected property card */}
             {selectedProperty && (
               <div className="bg-[#f7f7f7] px-5 py-6">
@@ -436,7 +374,7 @@ export default function BookViewingContent() {
               </h1>
             </div>
             <p className="font-sans text-white/70 text-sm md:text-base leading-relaxed max-w-[400px] md:text-right md:mb-1">
-              In-person or virtual — our agents are available six days a week to guide you through your next home.
+              Our agents are available six days a week to guide you through your next property viewing.
             </p>
           </div>
         </div>

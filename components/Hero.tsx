@@ -1,20 +1,63 @@
 'use client'
 
-import { Search, ChevronDown } from 'lucide-react'
+import { useMemo, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { Search } from 'lucide-react'
+import { properties } from '@/lib/properties'
+import SearchSelect from './SearchSelect'
 
 const HERO_IMAGE =
   'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1600&q=80'
 
+const priceRanges = [
+  'All Prices',
+  'Under R1.5M',
+  'R1.5M - R3M',
+  'R3M - R10M',
+  'Over R10M',
+]
+
 export default function Hero() {
+  const router = useRouter()
+  const propertyTypes = useMemo(
+    () => ['All Types', ...new Set(properties.map((property) => property.type))],
+    []
+  )
+  const areas = useMemo(
+    () => ['All Areas', ...new Set(properties.map((property) => property.location))],
+    []
+  )
+
+  const [selectedType, setSelectedType] = useState('All Types')
+  const [selectedPrice, setSelectedPrice] = useState('All Prices')
+  const [selectedArea, setSelectedArea] = useState('All Areas')
+
+  const handleSearch = () => {
+    const params = new URLSearchParams()
+
+    if (selectedType !== 'All Types') {
+      params.set('type', selectedType)
+    }
+
+    if (selectedPrice !== 'All Prices') {
+      params.set('price', selectedPrice)
+    }
+
+    if (selectedArea !== 'All Areas') {
+      params.set('area', selectedArea)
+    }
+
+    const query = params.toString()
+    router.push(query ? `/properties?${query}` : '/properties')
+  }
+
   return (
     <section className="relative min-h-[760px] md:min-h-[720px] flex flex-col justify-end overflow-hidden">
-      {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url('${HERO_IMAGE}')` }}
         aria-hidden="true"
       />
-      {/* Dark overlay gradient */}
       <div
         className="absolute inset-0"
         style={{
@@ -24,11 +67,9 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto w-full px-6 md:px-10 lg:px-16 pb-0">
-        {/* Tags row */}
         <div className="flex items-center gap-3 mb-6">
-          {['Plot', 'Architectural', 'Tech'].map((tag, i) => (
+          {['Residential', 'Commercial', 'Pretoria'].map((tag, i) => (
             <span
               key={tag}
               className={`text-xs font-sans px-3 py-1 rounded-sm border ${
@@ -42,51 +83,52 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* Headline + sub-copy */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
           <h1 className="font-sans font-bold text-white text-4xl md:text-6xl lg:text-7xl leading-[0.95] text-balance max-w-[680px]">
-            Own Your World,<br />One Property at a Time.
+            Find Your Place in
+            <br />
+            South Africa.
           </h1>
           <p className="font-sans text-white/80 text-sm md:text-base leading-relaxed max-w-[410px] md:text-right md:mb-7">
-            Seamlessly navigate the global real estate market. Our expert team is here
-            to guide you every step of the way.
+            Lomagugu Properties helps buyers, sellers, landlords, and investors move
+            with confidence across South Africa&apos;s property market.
           </p>
         </div>
 
-        {/* Search bar */}
-        <div className="mb-12 border border-white/15 bg-black/20 px-6 py-4 backdrop-blur-sm md:px-8">
-          <div className="flex flex-wrap md:flex-nowrap items-center gap-5">
-            {/* Type */}
-            <div className="flex flex-col gap-0.5 min-w-[110px]">
-              <span className="text-xs text-white/60 font-sans">Type</span>
-              <button className="flex items-center gap-1 text-sm font-sans text-white">
-                Duplex <ChevronDown size={14} className="text-white/65" />
-              </button>
-            </div>
+        <div className="mb-12 border border-white/15 bg-black/20 px-5 py-5 backdrop-blur-sm md:px-8">
+          <div className="grid grid-cols-1 items-end gap-5 sm:grid-cols-2 lg:grid-cols-[minmax(150px,0.8fr)_1px_minmax(170px,0.85fr)_1px_minmax(230px,1.4fr)_auto] lg:gap-6">
+            <SearchSelect
+              label="Type"
+              value={selectedType}
+              options={propertyTypes}
+              onChange={setSelectedType}
+              variant="hero"
+            />
 
-            <div className="hidden md:block w-px h-8 bg-white/20" aria-hidden="true" />
+            <div className="hidden h-8 w-px bg-white/20 lg:block" aria-hidden="true" />
 
-            {/* Price */}
-            <div className="flex flex-col gap-0.5 min-w-[130px]">
-              <span className="text-xs text-white/60 font-sans">Price</span>
-              <button className="flex items-center gap-1 text-sm font-sans text-white">
-                $261 - $371k <ChevronDown size={14} className="text-white/65" />
-              </button>
-            </div>
+            <SearchSelect
+              label="Price"
+              value={selectedPrice}
+              options={priceRanges}
+              onChange={setSelectedPrice}
+              variant="hero"
+            />
 
-            <div className="hidden md:block w-px h-8 bg-white/20" aria-hidden="true" />
+            <div className="hidden h-8 w-px bg-white/20 lg:block" aria-hidden="true" />
 
-            {/* Area */}
-            <div className="flex flex-col gap-0.5 flex-1">
-              <span className="text-xs text-white/60 font-sans">Area</span>
-              <button className="flex items-center gap-1 text-sm font-sans text-white">
-                Long Beach, California <ChevronDown size={14} className="text-white/65" />
-              </button>
-            </div>
+            <SearchSelect
+              label="Area"
+              value={selectedArea}
+              options={areas}
+              onChange={setSelectedArea}
+              variant="hero"
+              className="sm:col-span-2 lg:col-span-1"
+            />
 
-            {/* Search button */}
             <button
-              className="flex items-center gap-2 bg-primary text-primary-foreground text-sm font-sans font-medium px-5 py-2.5 hover:bg-accent transition-colors ml-auto shrink-0"
+              onClick={handleSearch}
+              className="flex h-11 items-center justify-center gap-2 bg-primary px-6 font-sans text-sm font-medium text-primary-foreground transition-colors hover:bg-accent sm:col-span-2 lg:col-span-1"
               aria-label="Search properties"
             >
               <Search size={15} />
