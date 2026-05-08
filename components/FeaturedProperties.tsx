@@ -53,7 +53,7 @@ export default function FeaturedProperties() {
 
   return (
     <section className="py-20 bg-background border-t border-border">
-      <div className="max-w-7xl mx-auto px-8">
+      <div className="w-full px-6 md:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-10">
           <div className="max-w-lg">
@@ -110,7 +110,7 @@ export default function FeaturedProperties() {
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   {/* For Sale badge — white bg, dark green text, thin border */}
-                  <span className="absolute top-3 left-3 bg-white text-[#1a3e2d] border border-[#1a3e2d] text-[11px] font-sans font-medium px-2 py-0.5">
+                  <span className="absolute top-3 left-3 bg-white text-black text-[11px] font-sans font-medium px-2 py-0.5">
                     {p.badge}
                   </span>
                 </div>

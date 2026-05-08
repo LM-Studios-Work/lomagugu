@@ -83,17 +83,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
-      {/* Watermark */}
-      <div className="border-t border-border py-6 px-8 overflow-hidden">
-        <p
-          className="font-sans font-black text-border text-center select-none"
-          style={{ fontSize: 'clamp(3rem, 10vw, 7rem)', letterSpacing: '-0.04em', lineHeight: 1 }}
-          aria-hidden="true"
-        >
-          DWELLA
-        </p>
-      </div>
     </footer>
   )
 }

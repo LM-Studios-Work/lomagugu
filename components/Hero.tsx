@@ -7,7 +7,7 @@ const HERO_IMAGE =
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-end overflow-hidden">
+    <section className="relative min-h-[760px] md:min-h-[720px] flex flex-col justify-end overflow-hidden">
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -25,7 +25,7 @@ export default function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-8 pb-0">
+      <div className="relative z-10 max-w-[1440px] mx-auto w-full px-6 md:px-10 lg:px-16 pb-0">
         {/* Tags row */}
         <div className="flex items-center gap-3 mb-6">
           {['Plot', 'Architectural', 'Tech'].map((tag, i) => (
@@ -43,44 +43,44 @@ export default function Hero() {
         </div>
 
         {/* Headline + sub-copy */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-          <h1 className="font-sans font-bold text-white text-4xl md:text-5xl lg:text-6xl leading-tight text-balance max-w-xl">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <h1 className="font-sans font-bold text-white text-4xl md:text-6xl lg:text-7xl leading-[0.95] text-balance max-w-[680px]">
             Own Your World,<br />One Property at a Time.
           </h1>
-          <p className="font-sans text-white/70 text-sm leading-relaxed max-w-xs md:text-right">
+          <p className="font-sans text-white/80 text-sm md:text-base leading-relaxed max-w-[410px] md:text-right md:mb-7">
             Seamlessly navigate the global real estate market. Our expert team is here
             to guide you every step of the way.
           </p>
         </div>
 
         {/* Search bar */}
-        <div className="bg-background px-6 py-4">
-          <div className="flex flex-wrap md:flex-nowrap items-center gap-4">
+        <div className="mb-12 border border-white/15 bg-black/20 px-6 py-4 backdrop-blur-sm md:px-8">
+          <div className="flex flex-wrap md:flex-nowrap items-center gap-5">
             {/* Type */}
             <div className="flex flex-col gap-0.5 min-w-[110px]">
-              <span className="text-xs text-muted-foreground font-sans">Type</span>
-              <button className="flex items-center gap-1 text-sm font-sans text-foreground">
-                Duplex <ChevronDown size={14} className="text-muted-foreground" />
+              <span className="text-xs text-white/60 font-sans">Type</span>
+              <button className="flex items-center gap-1 text-sm font-sans text-white">
+                Duplex <ChevronDown size={14} className="text-white/65" />
               </button>
             </div>
 
-            <div className="hidden md:block w-px h-8 bg-border" aria-hidden="true" />
+            <div className="hidden md:block w-px h-8 bg-white/20" aria-hidden="true" />
 
             {/* Price */}
             <div className="flex flex-col gap-0.5 min-w-[130px]">
-              <span className="text-xs text-muted-foreground font-sans">Price</span>
-              <button className="flex items-center gap-1 text-sm font-sans text-foreground">
-                $261 – $371k <ChevronDown size={14} className="text-muted-foreground" />
+              <span className="text-xs text-white/60 font-sans">Price</span>
+              <button className="flex items-center gap-1 text-sm font-sans text-white">
+                $261 - $371k <ChevronDown size={14} className="text-white/65" />
               </button>
             </div>
 
-            <div className="hidden md:block w-px h-8 bg-border" aria-hidden="true" />
+            <div className="hidden md:block w-px h-8 bg-white/20" aria-hidden="true" />
 
             {/* Area */}
             <div className="flex flex-col gap-0.5 flex-1">
-              <span className="text-xs text-muted-foreground font-sans">Area</span>
-              <button className="flex items-center gap-1 text-sm font-sans text-foreground">
-                Long Beach, California <ChevronDown size={14} className="text-muted-foreground" />
+              <span className="text-xs text-white/60 font-sans">Area</span>
+              <button className="flex items-center gap-1 text-sm font-sans text-white">
+                Long Beach, California <ChevronDown size={14} className="text-white/65" />
               </button>
             </div>
 

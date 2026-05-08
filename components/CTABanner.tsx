@@ -14,16 +14,16 @@ export default function CTABanner() {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-dark/80" aria-hidden="true" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-8 py-24">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+      <div className="relative z-10 mx-auto max-w-[880px] px-6 py-14 md:px-0 md:py-16">
+        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           {/* Heading */}
-          <h2 className="font-sans font-bold text-white text-3xl md:text-4xl lg:text-5xl leading-tight text-balance max-w-sm">
+          <h2 className="font-sans font-bold text-white text-3xl md:max-w-[390px] md:text-[40px] md:leading-[1.18] lg:text-[42px] text-balance">
             Ready to Own Your Dream Property
           </h2>
 
           {/* Right */}
-          <div className="md:max-w-sm">
-            <p className="font-sans text-white/60 text-sm leading-relaxed mb-6">
+          <div className="md:max-w-[390px] md:pt-1">
+            <p className="font-sans text-sm leading-snug text-white/70 mb-5">
               Encourage users to take the next step, whether it&apos;s contacting a real
               estate agent, signing up for a property alert, or scheduling a virtual tour.
             </p>

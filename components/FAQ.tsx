@@ -30,46 +30,48 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <section className="py-20 bg-background border-t border-border">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="flex flex-col md:flex-row gap-16 md:gap-24">
+    <section className="bg-background border-t border-border py-16 md:py-[64px]">
+      <div className="mx-auto w-full max-w-[1056px] px-6 md:px-0">
+        <div className="grid gap-14 md:grid-cols-[390px_512px] md:justify-between">
           {/* Left */}
-          <div className="md:w-64 shrink-0">
-            <h2 className="font-sans font-bold text-foreground text-3xl leading-tight text-balance mb-3">
+          <div className="max-w-[390px]">
+            <h2 className="font-sans text-[40px] font-bold leading-[1.28] tracking-normal text-foreground md:text-[42px]">
               Frequently Ask a Question
             </h2>
-            <p className="font-sans text-muted-foreground text-sm leading-relaxed">
+            <p className="mt-7 max-w-[352px] font-sans text-[13px] font-medium leading-[1.45] text-foreground">
               Got a question? We&apos;ve got the answer. Check out our frequently asked
               questions below.
             </p>
           </div>
 
-          {/* Right – accordion */}
-          <div className="flex-1">
+          {/* Right accordion */}
+          <div className="w-full md:w-[512px]">
             {faqs.map((item, i) => {
               const isOpen = open === i
               return (
                 <div key={i} className="border-b border-border">
                   <button
-                    className="w-full flex items-center justify-between py-5 text-left gap-4"
+                    className={`flex w-full items-start justify-between gap-6 text-left ${
+                      i === 0 ? 'pb-[18px] pt-0' : 'py-[22px]'
+                    }`}
                     onClick={() => setOpen(isOpen ? null : i)}
                     aria-expanded={isOpen}
                   >
                     <span
-                      className={`font-sans text-sm font-medium leading-snug ${
-                        isOpen ? 'text-foreground' : 'text-foreground/80'
+                      className={`max-w-[430px] font-sans text-[20px] font-bold leading-[1.12] tracking-normal ${
+                        isOpen ? 'text-foreground' : 'text-foreground'
                       }`}
                     >
                       {item.q}
                     </span>
                     {isOpen ? (
-                      <ChevronUp size={16} className="shrink-0 text-muted-foreground" />
+                      <ChevronUp size={18} strokeWidth={2} className="mt-1 shrink-0 text-foreground" />
                     ) : (
-                      <ChevronDown size={16} className="shrink-0 text-muted-foreground" />
+                      <ChevronDown size={18} strokeWidth={2} className="mt-1 shrink-0 text-foreground" />
                     )}
                   </button>
                   {isOpen && (
-                    <p className="font-sans text-muted-foreground text-sm leading-relaxed pb-5">
+                    <p className="max-w-[430px] pb-[20px] font-sans text-[13px] font-medium leading-[1.25] text-muted-foreground">
                       {item.a}
                     </p>
                   )}
