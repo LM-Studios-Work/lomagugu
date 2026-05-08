@@ -35,10 +35,10 @@ export default function FAQ() {
         <div className="grid gap-14 md:grid-cols-[390px_512px] md:justify-between">
           {/* Left */}
           <div className="max-w-[390px]">
-            <h2 className="font-sans text-[40px] font-bold leading-[1.28] tracking-normal text-foreground md:text-[42px]">
+            <h2 className="font-sans text-[40px] font-medium leading-[1.28] tracking-normal text-foreground md:text-[42px]">
               Frequently Ask a Question
             </h2>
-            <p className="mt-7 max-w-[352px] font-sans text-[13px] font-medium leading-[1.45] text-foreground">
+            <p className="mt-7 max-w-[352px] font-sans text-[13px] font-normal leading-[1.45] text-foreground">
               Got a question? We&apos;ve got the answer. Check out our frequently asked
               questions below.
             </p>
@@ -58,7 +58,7 @@ export default function FAQ() {
                     aria-expanded={isOpen}
                   >
                     <span
-                      className={`max-w-[430px] font-sans text-[20px] font-bold leading-[1.12] tracking-normal ${
+                      className={`max-w-[430px] font-sans text-[20px] font-medium leading-[1.12] tracking-normal ${
                         isOpen ? 'text-foreground' : 'text-foreground'
                       }`}
                     >
@@ -71,7 +71,7 @@ export default function FAQ() {
                     )}
                   </button>
                   {isOpen && (
-                    <p className="max-w-[430px] pb-[20px] font-sans text-[13px] font-medium leading-[1.25] text-muted-foreground">
+                    <p className="max-w-[430px] pb-[20px] font-sans text-[13px] font-normal leading-[1.25] text-muted-foreground">
                       {item.a}
                     </p>
                   )}

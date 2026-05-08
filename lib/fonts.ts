@@ -53,6 +53,16 @@ export const helveticaNeue = localFont({
       style: 'italic',
     },
     {
+      path: '../fonts/HelveticaNeueMedium.otf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/HelveticaNeueMediumItalic.otf',
+      weight: '600',
+      style: 'italic',
+    },
+    {
       path: '../fonts/HelveticaNeueBold.otf',
       weight: '700',
       style: 'normal',

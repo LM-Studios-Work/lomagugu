@@ -3,9 +3,14 @@ import { helveticaNeue } from '@/lib/fonts'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Dwella – Own Your World, One Property at a Time',
+  title: 'Dwella - Own Your World, One Property at a Time',
   description:
     'Dwella is your gateway to a world of real estate opportunities. With a global network of trusted partners, we connect buyers and sellers across borders.',
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
+  },
 }
 
 export default function RootLayout({
@@ -14,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${helveticaNeue.variable} bg-background`}>
+    <html lang="en" className={`${helveticaNeue.variable} bg-background antialiased`}>
       <body>{children}</body>
     </html>
   )

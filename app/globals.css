@@ -35,7 +35,9 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-helvetica-neue), sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Hover state for property list CTA button */
