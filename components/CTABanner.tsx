@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
 const CTA_BG = 'https://images.unsplash.com/photo-1560184897-ae75f418493e?w=1600&q=80'
@@ -27,12 +28,12 @@ export default function CTABanner() {
               Encourage users to take the next step, whether it&apos;s contacting a real
               estate agent, signing up for a property alert, or scheduling a virtual tour.
             </p>
-            <a
-              href="#"
+            <Link
+              href="/contact"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground text-sm font-sans font-medium px-6 py-3 hover:bg-accent transition-colors"
             >
               Get Started <ArrowRight size={15} />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

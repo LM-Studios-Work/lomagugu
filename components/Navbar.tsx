@@ -1,17 +1,30 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/#about' },
+  { label: 'Property List', href: '/properties' },
+  { label: 'Book Viewing', href: '/book-viewing' },
+  { label: 'Contact Us', href: '/contact' },
+]
+
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isHome = pathname === '/'
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50">
+    <header className={isHome ? 'absolute top-0 left-0 right-0 z-50' : 'relative bg-dark z-50'}>
       <nav className="flex items-center justify-between px-8 py-5 max-w-7xl mx-auto">
         {/* Logo */}
-        <a href="/" aria-label="Dwella Home" className="flex items-center gap-1">
+        <Link href="/" aria-label="Dwella Home" className="flex items-center gap-1">
           <Image
             src="/Logo-removebg-preview.png"
             alt="Dwella"
@@ -20,14 +33,20 @@ export default function Navbar() {
             className="h-[3.3rem] w-auto"
             priority
           />
-        </a>
+        </Link>
 
         {/* Desktop nav links */}
         <ul className="hidden md:flex items-center gap-8 text-sm font-sans text-white">
-          <li><a href="#" className="hover:opacity-75 transition-opacity font-medium">Home</a></li>
-          <li><a href="#about" className="hover:opacity-75 transition-opacity">About Us</a></li>
-          <li><a href="#properties" className="hover:opacity-75 transition-opacity">Property List</a></li>
-          <li><a href="#contact" className="hover:opacity-75 transition-opacity">Contact Us</a></li>
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className={`hover:opacity-75 transition-opacity ${pathname === link.href ? 'font-semibold opacity-100' : 'font-normal opacity-90'}`}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         {/* Actions */}
@@ -59,10 +78,16 @@ export default function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden bg-dark/95 backdrop-blur-sm px-8 pb-6 flex flex-col gap-4">
-          <a href="#" className="text-white text-sm font-medium py-2 border-b border-white/10">Home</a>
-          <a href="#about" className="text-white text-sm py-2 border-b border-white/10">About Us</a>
-          <a href="#properties" className="text-white text-sm py-2 border-b border-white/10">Property List</a>
-          <a href="#contact" className="text-white text-sm py-2 border-b border-white/10">Contact Us</a>
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-white text-sm py-2 border-b border-white/10"
+              onClick={() => setMobileOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
           <div className="flex gap-3 pt-2">
             <a href="#" className="text-white text-sm border border-white/40 px-4 py-2">Login</a>
             <a href="#" className="bg-primary text-white text-sm px-4 py-2">Registration</a>
