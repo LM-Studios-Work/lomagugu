@@ -1,48 +1,9 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { ArrowRight, MapPin } from 'lucide-react'
+import { properties as allProperties } from '@/lib/properties'
 
-const listings = [
-  {
-    id: 1,
-    name: 'Modern City Apartment',
-    location: 'New York City, USA',
-    price: '$1,200,000',
-    type: 'Apartment',
-    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400&q=80',
-  },
-  {
-    id: 2,
-    name: 'Luxury Beachfront Villa',
-    location: 'Miami Beach, USA',
-    price: '$2,500,000',
-    type: 'Villa',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=400&q=80',
-  },
-  {
-    id: 3,
-    name: 'Cozy Mountain Cabin',
-    location: 'Aspen, USA',
-    price: '$1,200,000',
-    type: 'Cabin',
-    image: 'https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=400&q=80',
-  },
-  {
-    id: 4,
-    name: 'Historic Brownstone Townhouse',
-    location: 'Boston, USA',
-    price: '$1,800,000',
-    type: 'Townhouse',
-    image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&q=80',
-  },
-  {
-    id: 5,
-    name: 'Rustic Farmhouse Estate',
-    location: 'Napa Valley, USA',
-    price: '$3,000,000',
-    type: 'Farmhouse',
-    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80',
-  },
-]
+const listings = allProperties.slice(0, 5)
 
 export default function PropertyList() {
   return (
@@ -58,12 +19,12 @@ export default function PropertyList() {
               intuitive filters to refine your search by property type, price range, and location.
             </p>
           </div>
-          <a
-            href="#"
+          <Link
+            href="/properties"
             className="mt-[36px] hidden font-sans text-[13px] font-normal leading-none text-foreground transition-colors hover:text-primary md:inline"
           >
             See All
-          </a>
+          </Link>
         </div>
 
         <div className="flex flex-col gap-0">
@@ -103,12 +64,12 @@ export default function PropertyList() {
 
               <div className="hidden h-[31px] w-px justify-self-center bg-[#9fb0a7] md:block" aria-hidden="true" />
 
-              <a
-                href="#"
+              <Link
+                href={`/properties/${item.id}`}
                 className="mt-4 inline-flex h-[35px] w-[108px] shrink-0 items-center justify-center gap-[7px] border border-[#dbe9e3] bg-transparent font-sans text-[11px] font-semibold leading-none text-foreground transition-colors group-hover:border-[#173f2c] group-hover:bg-[#173f2c] group-hover:text-white md:mt-0 md:justify-self-end"
               >
                 View Details <ArrowRight size={14} strokeWidth={1.75} />
-              </a>
+              </Link>
             </article>
           ))}
         </div>

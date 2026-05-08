@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 const HOUSE_IMG = 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&q=80'
 
@@ -12,11 +13,17 @@ export default function Footer() {
           <div>
             <p className="font-sans font-semibold text-foreground text-sm mb-4">Menu</p>
             <ul className="flex flex-col gap-2">
-              {['Home', 'About Us', 'Property List', 'Contact Us'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="font-sans text-xs text-muted-foreground hover:text-foreground transition-colors">
-                    {link}
-                  </a>
+              {[
+                { label: 'Home', href: '/' },
+                { label: 'About Us', href: '/#about' },
+                { label: 'Property List', href: '/properties' },
+                { label: 'Book Viewing', href: '/book-viewing' },
+                { label: 'Contact Us', href: '/contact' },
+              ].map(({ label, href }) => (
+                <li key={label}>
+                  <Link href={href} className="font-sans text-xs text-muted-foreground hover:text-foreground transition-colors">
+                    {label}
+                  </Link>
                 </li>
               ))}
             </ul>
