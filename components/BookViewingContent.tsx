@@ -14,7 +14,7 @@ import {
   ArrowRight,
   Check,
 } from 'lucide-react'
-import { properties } from '@/lib/properties'
+import { Property } from '@/lib/properties'
 
 const HERO_IMAGE =
   'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=80'
@@ -29,7 +29,7 @@ function getTodayStr() {
   return new Date().toISOString().split('T')[0]
 }
 
-function BookViewingForm() {
+function BookViewingForm({ initialProperties = [] }: { initialProperties?: Property[] }) {
   const searchParams = useSearchParams()
   const preselectedId = searchParams.get('property')
 
@@ -48,7 +48,7 @@ function BookViewingForm() {
     if (preselectedId) setForm((f) => ({ ...f, property: preselectedId }))
   }, [preselectedId])
 
-  const selectedProperty = properties.find((p) => String(p.id) === form.property)
+  const selectedProperty = initialProperties.find((p) => String(p.id) === form.property)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -224,7 +224,7 @@ function BookViewingForm() {
                   className="w-full border-b border-border bg-transparent font-sans text-base text-foreground pb-3 focus:outline-none focus:border-foreground appearance-none cursor-pointer"
                 >
                   <option value="">Choose a property...</option>
-                  {properties.map((p) => (
+                  {initialProperties.map((p) => (
                     <option key={p.id} value={String(p.id)}>
                       {p.name} — {p.location}
                     </option>
@@ -345,7 +345,7 @@ function BookViewingForm() {
   )
 }
 
-export default function BookViewingContent() {
+export default function BookViewingContent({ initialProperties = [] }: { initialProperties?: Property[] }) {
   return (
     <>
       {/* ── Hero ── */}
@@ -383,7 +383,7 @@ export default function BookViewingContent() {
       {/* ── Form ── */}
       <section className="bg-background">
         <Suspense>
-          <BookViewingForm />
+          <BookViewingForm initialProperties={initialProperties} />
         </Suspense>
       </section>
     </>

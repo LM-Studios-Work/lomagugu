@@ -7,11 +7,15 @@ export const metadata = {
   description: 'Schedule a property viewing with Lomagugu Properties.',
 }
 
-export default function BookViewingPage() {
+import { fetchProperties } from '@/lib/properties'
+
+export default async function BookViewingPage() {
+  const properties = await fetchProperties()
+
   return (
     <main>
       <Navbar />
-      <BookViewingContent />
+      <BookViewingContent initialProperties={properties} />
       <Footer />
     </main>
   )

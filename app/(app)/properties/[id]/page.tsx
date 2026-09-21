@@ -2,19 +2,21 @@ import { notFound } from 'next/navigation'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import PropertyDetail from '@/components/PropertyDetail'
-import { properties } from '@/lib/properties'
+import { fetchProperties } from '@/lib/properties'
 
 interface Props {
   params: Promise<{ id: string }>
 }
 
 export async function generateStaticParams() {
+  const properties = await fetchProperties()
   return properties.map((p) => ({ id: String(p.id) }))
 }
 
 export async function generateMetadata({ params }: Props) {
   const { id } = await params
-  const property = properties.find((p) => p.id === Number(id))
+  const properties = await fetchProperties()
+  const property = properties.find((p) => String(p.id) === id)
   if (!property) return { title: 'Property Not Found - Lomagugu Properties' }
   return {
     title: `${property.name} - Lomagugu Properties`,
@@ -24,7 +26,8 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function PropertyDetailPage({ params }: Props) {
   const { id } = await params
-  const property = properties.find((p) => p.id === Number(id))
+  const properties = await fetchProperties()
+  const property = properties.find((p) => String(p.id) === id)
   if (!property) notFound()
 
   return (
