@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-const HOUSE_IMG = 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&q=80'
 
 const mainLinks = [
   { label: 'Home', href: '/' },
@@ -22,8 +21,8 @@ const supportLinks = [
 export default function Footer() {
   return (
     <footer className="bg-background border-t border-border">
-      <div className="max-w-7xl mx-auto px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-8 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div>
             <p className="font-sans font-semibold text-foreground text-sm mb-4">
               Lomagugu Properties
@@ -79,24 +78,7 @@ export default function Footer() {
             </address>
           </div>
 
-          <div>
-            <p className="font-sans font-semibold text-foreground text-sm mb-4">Visit Us</p>
-            <div className="relative w-full aspect-[4/3] rounded overflow-hidden mb-4">
-              <Image
-                src={HOUSE_IMG}
-                alt="Lomagugu Properties"
-                fill
-                className="object-cover"
-                sizes="200px"
-              />
-            </div>
-            <Link
-              href="/contact"
-              className="font-sans text-xs text-foreground hover:text-primary transition-colors"
-            >
-              View office location
-            </Link>
-          </div>
+
         </div>
       </div>
     </footer>

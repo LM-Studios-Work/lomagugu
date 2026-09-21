@@ -18,10 +18,8 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
 
-  const isHome = pathname === '/'
-
   return (
-    <header className={isHome ? 'absolute top-0 left-0 right-0 z-50' : 'relative bg-dark z-50'}>
+    <header className={`absolute top-0 left-0 right-0 z-50 transition-colors ${mobileOpen ? 'bg-black' : ''}`}>
       <nav className="flex items-center justify-between px-8 py-5 max-w-7xl mx-auto">
         {/* Logo */}
         <Link href="/" aria-label="Lomagugu Properties Home" className="flex items-center gap-1">
@@ -36,7 +34,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav links */}
-        <ul className="hidden md:flex items-center gap-8 text-sm font-sans text-white">
+        <ul className="hidden lg:flex items-center gap-8 text-sm font-sans text-white">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
@@ -50,7 +48,7 @@ export default function Navbar() {
         </ul>
 
         {/* Actions */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <Link
             href="/contact"
             className="text-sm font-sans bg-primary text-primary-foreground px-4 py-2 hover:bg-accent transition-colors"
@@ -61,7 +59,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-white"
+          className="lg:hidden text-white"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -71,7 +69,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-dark/95 backdrop-blur-sm px-8 pb-6 flex flex-col gap-4">
+        <div className="lg:hidden bg-black px-8 pb-6 pt-4 flex flex-col gap-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}

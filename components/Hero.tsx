@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Search } from 'lucide-react'
-import { properties } from '@/lib/properties'
+import { Property } from '@/lib/properties'
 import SearchSelect from './SearchSelect'
 
 const HERO_IMAGE =
@@ -17,15 +17,15 @@ const priceRanges = [
   'Over R10M',
 ]
 
-export default function Hero() {
+export default function Hero({ initialProperties = [] }: { initialProperties?: Property[] }) {
   const router = useRouter()
   const propertyTypes = useMemo(
-    () => ['All Types', ...new Set(properties.map((property) => property.type))],
-    []
+    () => Array.from(new Set(['All Types', ...initialProperties.map((property) => property.type)])),
+    [initialProperties]
   )
   const areas = useMemo(
-    () => ['All Areas', ...new Set(properties.map((property) => property.location))],
-    []
+    () => Array.from(new Set(['All Areas', ...initialProperties.map((property) => property.location)])),
+    [initialProperties]
   )
 
   const [selectedType, setSelectedType] = useState('All Types')
@@ -52,7 +52,7 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative min-h-[760px] md:min-h-[720px] flex flex-col justify-end overflow-hidden">
+    <section className="relative min-h-[760px] md:min-h-[720px] flex flex-col justify-end z-20">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url('${HERO_IMAGE}')` }}

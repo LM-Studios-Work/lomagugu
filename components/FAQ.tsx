@@ -32,7 +32,7 @@ export default function FAQ() {
   return (
     <section id="faq" className="border-t border-border bg-background pb-16 pt-[86px] md:pb-[64px] md:pt-[96px]">
       <div className="mx-auto w-full max-w-[1124px] px-6 md:px-[54px]">
-        <div className="grid gap-14 md:grid-cols-[390px_512px] md:justify-between">
+        <div className="grid gap-14 lg:grid-cols-[390px_512px] lg:justify-between">
           {/* Left */}
           <div className="max-w-[390px]">
             <h2 className="font-sans text-[40px] font-medium leading-[1.28] tracking-normal text-foreground md:text-[42px]">

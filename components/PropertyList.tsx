@@ -4,15 +4,12 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, MapPin } from 'lucide-react'
-import { properties as allProperties } from '@/lib/properties'
+import { Property } from '@/lib/properties'
 import PropertyDetailsModal from './PropertyDetailsModal'
 
-const listings = allProperties.slice(0, 5)
-
-export default function PropertyList() {
-  const [selectedProperty, setSelectedProperty] = useState<(typeof allProperties)[number] | null>(
-    null
-  )
+export default function PropertyList({ initialProperties = [] }: { initialProperties?: Property[] }) {
+  const listings = initialProperties.slice(0, 3)
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null)
 
   return (
     <>
@@ -33,7 +30,7 @@ export default function PropertyList() {
             href="/properties"
             className="mt-[36px] hidden font-sans text-[13px] font-normal leading-none text-foreground transition-colors hover:text-primary md:inline"
           >
-            See All
+            View More
           </Link>
         </div>
 
@@ -41,9 +38,9 @@ export default function PropertyList() {
           {listings.map((item) => (
             <article
               key={item.id}
-              className="group grid items-center gap-x-5 px-4 py-[14px] transition-colors duration-200 hover:bg-white md:grid-cols-[149px_minmax(270px,1fr)_minmax(210px,240px)_70px_126px] md:gap-x-[29px] md:px-[16px] md:py-[14px]"
+              className="group grid items-center gap-x-5 px-4 py-[14px] transition-colors duration-200 hover:bg-white lg:grid-cols-[149px_minmax(270px,1fr)_minmax(210px,240px)_70px_126px] lg:gap-x-[29px] lg:px-[16px] lg:py-[14px]"
             >
-              <div className="relative h-[98px] w-full overflow-hidden md:h-[99px] md:w-[149px]">
+              <div className="relative w-full aspect-square overflow-hidden lg:aspect-auto lg:h-[99px] lg:w-[149px]">
                 <Image
                   src={item.image}
                   alt={item.name}

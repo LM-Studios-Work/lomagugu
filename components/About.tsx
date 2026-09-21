@@ -25,7 +25,7 @@ export default function About() {
   return (
     <section id="about" className="bg-background py-16 sm:py-20 lg:py-[58px]">
       <div className="w-full px-6 sm:px-10 lg:px-[56px]">
-        <div className="grid grid-cols-1 items-start gap-14 md:grid-cols-[minmax(0,620px)_minmax(360px,404px)] md:justify-between md:gap-16 lg:gap-20 xl:grid-cols-[minmax(0,640px)_404px]">
+        <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[minmax(0,620px)_minmax(360px,404px)] lg:justify-between lg:gap-16 xl:gap-20 xl:grid-cols-[minmax(0,640px)_404px]">
           {/* Left */}
           <div className="max-w-[650px]">
             <p className="mb-[42px] inline-flex h-[38px] items-center rounded-full border border-[#ededed] px-[18px] font-sans text-[15px] font-normal leading-none text-[#3f3f3f] shadow-[0_1px_5px_rgba(0,0,0,0.035)]">
@@ -42,7 +42,7 @@ export default function About() {
           </div>
 
           {/* Right */}
-          <div className="flex w-full flex-col gap-[12px] md:w-full md:justify-self-end">
+          <div className="flex w-full flex-col gap-[12px] lg:w-full lg:justify-self-end">
             {features.map(({ icon: Icon, title, description, dark }) => (
               <div
                 key={title}

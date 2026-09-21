@@ -13,9 +13,11 @@ import {
   X,
   ArrowRight,
 } from 'lucide-react'
-import { properties } from '@/lib/properties'
+import { Property } from '@/lib/properties'
 import PropertyDetailsModal from './PropertyDetailsModal'
 import SearchSelect from './SearchSelect'
+
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1800&q=85'
 
 const priceRanges = [
   { label: 'All Prices', min: 0, max: Infinity },
@@ -25,11 +27,9 @@ const priceRanges = [
   { label: 'Over R10M', min: 10000000, max: Infinity },
 ]
 
-const propertyTypes = ['All Types', ...new Set(properties.map((property) => property.type))]
-const propertyAreas = ['All Areas', ...new Set(properties.map((property) => property.location))]
-
 interface PropertiesContentProps {
   searchParams?: Record<string, string | string[] | undefined>
+  initialProperties?: Property[]
 }
 
 function parsePrice(price: string): number | null {
@@ -51,7 +51,9 @@ function getPriceIndex(label: string | null): number {
   return index >= 0 ? index : 0
 }
 
-export default function PropertiesContent({ searchParams }: PropertiesContentProps) {
+export default function PropertiesContent({ searchParams, initialProperties = [] }: PropertiesContentProps) {
+  const propertyTypes = useMemo(() => Array.from(new Set(['All Types', ...initialProperties.map((p) => p.type)])), [initialProperties])
+  const propertyAreas = useMemo(() => Array.from(new Set(['All Areas', ...initialProperties.map((p) => p.location)])), [initialProperties])
   const pathname = usePathname()
   const router = useRouter()
 
@@ -60,9 +62,7 @@ export default function PropertiesContent({ searchParams }: PropertiesContentPro
   const [selectedPriceIdx, setSelectedPriceIdx] = useState(0)
   const [selectedArea, setSelectedArea] = useState('All Areas')
   const [filtersOpen, setFiltersOpen] = useState(false)
-  const [selectedProperty, setSelectedProperty] = useState<(typeof properties)[number] | null>(
-    null
-  )
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null)
 
   useEffect(() => {
     const searchValue = searchParams?.search
@@ -109,7 +109,7 @@ export default function PropertiesContent({ searchParams }: PropertiesContentPro
     const range = priceRanges[selectedPriceIdx]
     const normalizedSearch = search.trim().toLowerCase()
 
-    return properties.filter((property) => {
+    return initialProperties.filter((property) => {
       const matchesSearch =
         !normalizedSearch ||
         property.name.toLowerCase().includes(normalizedSearch) ||
@@ -141,8 +141,21 @@ export default function PropertiesContent({ searchParams }: PropertiesContentPro
 
   return (
     <>
-      <section className="bg-dark pt-32 pb-20 px-6 md:px-10 lg:px-16">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative min-h-[500px] flex flex-col justify-end overflow-hidden pt-36 pb-20">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url('${HERO_IMAGE}')` }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to bottom, rgba(10,20,15,0.40) 0%, rgba(10,20,15,0.7) 50%, rgba(10,20,15,0.95) 100%)',
+          }}
+          aria-hidden="true"
+        />
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
           <p className="font-sans text-xs text-white/50 tracking-widest uppercase mb-4">
             Our Portfolio
           </p>
@@ -156,25 +169,26 @@ export default function PropertiesContent({ searchParams }: PropertiesContentPro
         </div>
       </section>
 
-      <section className="bg-[#e8f8f1] border-b border-[#c8e8d8] sticky top-0 z-40">
+      <section className="bg-white border-b border-border sticky top-0 z-40 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 py-4">
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-            <div className="relative flex-1 max-w-md">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Search Input */}
+            <div className="relative w-full md:max-w-xs">
               <Search
                 size={15}
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4b5554]"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
               />
               <input
                 type="text"
                 placeholder="Search by name, type, or location..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-4 py-2.5 bg-white border border-[#c8e8d8] font-sans text-sm text-foreground placeholder-[#9fb0a7] focus:outline-none focus:border-primary"
+                className="w-full pl-9 pr-4 py-2.5 bg-background border border-border font-sans text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary transition-colors"
               />
               {search && (
                 <button
                   onClick={() => setSearch('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#4b5554] hover:text-foreground"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                   aria-label="Clear search"
                 >
                   <X size={14} />
@@ -182,68 +196,70 @@ export default function PropertiesContent({ searchParams }: PropertiesContentPro
               )}
             </div>
 
+            {/* Desktop Filters */}
+            <div className="hidden md:flex items-center gap-3 flex-1 justify-end">
+              <div className="w-[180px]">
+                <SearchSelect
+                  label="Type"
+                  value={selectedType}
+                  options={propertyTypes}
+                  onChange={setSelectedType}
+                />
+              </div>
+              <div className="w-[180px]">
+                <SearchSelect
+                  label="Area"
+                  value={selectedArea}
+                  options={propertyAreas}
+                  onChange={setSelectedArea}
+                />
+              </div>
+              <div className="w-[180px]">
+                <SearchSelect
+                  label="Price"
+                  value={priceRanges[selectedPriceIdx].label}
+                  options={priceRanges.map((range) => range.label)}
+                  onChange={(value) => setSelectedPriceIdx(getPriceIndex(value))}
+                />
+              </div>
+
+              {hasActiveFilters && (
+                <button
+                  onClick={resetFilters}
+                  className="flex h-11 items-center justify-center px-4 font-sans text-xs font-semibold text-primary hover:bg-muted transition-colors border border-transparent mt-[22px]"
+                >
+                  Reset
+                </button>
+              )}
+            </div>
+
             <button
               onClick={() => setFiltersOpen((open) => !open)}
-              className="md:hidden flex items-center gap-2 text-sm font-sans text-foreground border border-[#c8e8d8] bg-white px-4 py-2.5"
+              className="md:hidden flex items-center gap-2 text-sm font-sans text-foreground border border-border bg-white px-4 py-2.5 w-full justify-center"
             >
               <SlidersHorizontal size={15} />
               Filters
             </button>
 
-            <div className="hidden md:flex items-end gap-3 flex-wrap">
-              <SearchSelect
-                label="Type"
-                value={selectedType}
-                options={propertyTypes}
-                onChange={setSelectedType}
-              />
-
-              <SearchSelect
-                label="Area"
-                value={selectedArea}
-                options={propertyAreas}
-                onChange={setSelectedArea}
-                className="min-w-[210px]"
-              />
-
-              <SearchSelect
-                label="Price"
-                value={priceRanges[selectedPriceIdx].label}
-                options={priceRanges.map((range) => range.label)}
-                onChange={(value) => setSelectedPriceIdx(getPriceIndex(value))}
-              />
-
-              {hasActiveFilters && (
-                <button
-                  onClick={resetFilters}
-                  className="mb-0 flex h-11 items-center border border-transparent px-1 font-sans text-xs font-semibold text-primary hover:underline"
-                >
-                  Reset filters
-                </button>
-              )}
-            </div>
-
-            <p className="font-sans text-xs text-[#4b5554] ml-auto whitespace-nowrap">
+            <p className="font-sans text-xs text-muted-foreground whitespace-nowrap hidden lg:block ml-2">
               {filtered.length} {filtered.length === 1 ? 'property' : 'properties'}
             </p>
           </div>
 
           {filtersOpen && (
-            <div className="md:hidden flex flex-col gap-3 mt-3 pt-3 border-t border-[#c8e8d8]">
+            <div className="md:hidden flex flex-col gap-3 mt-4 pt-4 border-t border-border">
               <SearchSelect
                 label="Type"
                 value={selectedType}
                 options={propertyTypes}
                 onChange={setSelectedType}
               />
-
               <SearchSelect
                 label="Area"
                 value={selectedArea}
                 options={propertyAreas}
                 onChange={setSelectedArea}
               />
-
               <SearchSelect
                 label="Price"
                 value={priceRanges[selectedPriceIdx].label}
@@ -254,11 +270,15 @@ export default function PropertiesContent({ searchParams }: PropertiesContentPro
               {hasActiveFilters && (
                 <button
                   onClick={resetFilters}
-                  className="self-start font-sans text-xs text-primary hover:underline"
+                  className="self-start font-sans text-xs text-primary hover:underline mt-2"
                 >
                   Reset filters
                 </button>
               )}
+              
+              <p className="font-sans text-xs text-muted-foreground mt-2">
+                {filtered.length} {filtered.length === 1 ? 'property' : 'properties'} found
+              </p>
             </div>
           )}
         </div>
