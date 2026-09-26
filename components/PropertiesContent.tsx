@@ -33,13 +33,22 @@ interface PropertiesContentProps {
 }
 
 function parsePrice(price: string): number | null {
-  const digits = price.replace(/[^0-9]/g, '')
-  if (!digits) {
-    return null
+  if (!price) return null;
+  
+  const firstPart = price.split('-')[0];
+  const match = firstPart.match(/[\d.,\s]+/);
+  if (!match) return null;
+  
+  const numStr = match[0].replace(/[, \s]/g, '');
+  let numericPrice = Number(numStr);
+  
+  if (firstPart.toLowerCase().includes('m')) {
+    numericPrice *= 1000000;
+  } else if (firstPart.toLowerCase().includes('k')) {
+    numericPrice *= 1000;
   }
 
-  const numericPrice = Number(digits)
-  return Number.isFinite(numericPrice) ? numericPrice : null
+  return Number.isFinite(numericPrice) ? numericPrice : null;
 }
 
 function getPriceIndex(label: string | null): number {

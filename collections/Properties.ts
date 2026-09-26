@@ -17,8 +17,27 @@ export const Properties: CollectionConfig = {
     },
     {
       name: 'price',
-      type: 'number',
-      required: true,
+      type: 'group',
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'min',
+              type: 'number',
+              label: 'Minimum Price',
+              required: true,
+              admin: { width: '50%' }
+            },
+            {
+              name: 'max',
+              type: 'number',
+              label: 'Maximum Price (Optional)',
+              admin: { width: '50%' }
+            }
+          ]
+        }
+      ]
     },
     {
       name: 'location',

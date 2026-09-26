@@ -34,11 +34,12 @@ export default function About() {
             <h2 className="mb-[27px] max-w-[455px] font-sans text-[42px] font-normal leading-[1.46] tracking-normal text-foreground sm:text-[48px] sm:leading-[1.28] lg:text-[48px] lg:leading-[1.26]">
               Your South African Property Partner.
             </h2>
-            <p className="max-w-[595px] font-sans text-[17px] font-normal leading-[1.32] tracking-normal text-[#444444]">
-              We are a leading real estate company committed to helping you find the
-              perfect property. With years of experience and a deep understanding of
-              the market, we provide exceptional service and expert guidance.
+            <p className="mb-[27px] max-w-[595px] font-sans text-[17px] font-normal leading-[1.32] tracking-normal text-[#444444]">
+              Lomagugu Properties (Pty) Ltd is a proudly South African, Black woman-owned property company built around one simple belief: property is more than bricks and buildings — it is an opportunity to create value, build communities and transform lives.
             </p>
+            <a href="/about" className="inline-flex h-[42px] items-center justify-center bg-primary px-[24px] font-sans text-[15px] font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+              Read More About Us
+            </a>
           </div>
 
           {/* Right */}

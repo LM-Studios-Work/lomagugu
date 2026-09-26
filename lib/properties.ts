@@ -59,7 +59,7 @@ export async function fetchProperties(): Promise<Property[]> {
       id: doc.id,
       name: doc.title,
       location: doc.location,
-      price: doc.price ? formatCurrency(doc.price) : 'Price on request',
+      price: doc.price ? (typeof doc.price === 'object' && doc.price !== null ? (doc.price.max ? `${formatCurrency(doc.price.min)} - ${formatCurrency(doc.price.max)}` : formatCurrency(doc.price.min)) : (typeof doc.price === 'number' ? formatCurrency(doc.price) : String(doc.price))) : 'Price on request',
       type: doc.type ? doc.type.charAt(0).toUpperCase() + doc.type.slice(1) : 'Property',
       badge: 'For Sale',
       beds: doc.bedrooms || 0,
