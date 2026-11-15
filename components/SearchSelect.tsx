@@ -82,8 +82,8 @@ export default function SearchSelect({
         <div
           className={
             isHero
-              ? 'absolute left-0 top-[calc(100%+10px)] z-50 max-h-72 min-w-full overflow-auto border border-white/15 bg-[#08120d]/95 p-1.5 shadow-2xl backdrop-blur-md'
-              : 'absolute left-0 top-[calc(100%+8px)] z-50 max-h-72 min-w-full overflow-auto border border-[#b9ddca] bg-white p-1.5 shadow-xl'
+              ? 'absolute left-0 top-[calc(100%+10px)] z-50 max-h-72 min-w-full w-max max-w-[min(340px,calc(100vw-3rem))] overflow-auto rounded-sm border border-white/15 bg-[#08120d]/95 p-1.5 shadow-2xl backdrop-blur-md'
+              : 'absolute left-0 top-[calc(100%+8px)] z-50 max-h-72 min-w-full overflow-auto rounded-sm border border-[#b9ddca] bg-white p-1.5 shadow-xl'
           }
         >
           {options.map((option) => {
@@ -97,13 +97,13 @@ export default function SearchSelect({
                   onChange(option)
                   setOpen(false)
                 }}
-                className={`block w-full min-w-max px-3 py-2 text-left font-sans text-sm transition-colors ${
+                className={`block w-full px-3 py-2 text-left font-sans text-sm whitespace-nowrap rounded-sm transition-colors ${
                   isHero
                     ? selected
-                      ? 'bg-white text-foreground'
-                      : 'text-white/78 hover:bg-white/10 hover:text-white'
+                      ? 'bg-white text-foreground font-medium'
+                      : 'text-white/90 hover:bg-white/10 hover:text-white'
                     : selected
-                      ? 'bg-primary text-white'
+                      ? 'bg-primary text-white font-medium'
                       : 'text-foreground hover:bg-[#e8f8f1]'
                 }`}
               >

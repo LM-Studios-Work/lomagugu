@@ -20,11 +20,23 @@ const priceRanges = [
 export default function Hero({ initialProperties = [] }: { initialProperties?: Property[] }) {
   const router = useRouter()
   const propertyTypes = useMemo(
-    () => Array.from(new Set(['All Types', ...initialProperties.map((property) => property.type)])),
+    () =>
+      Array.from(
+        new Set([
+          'All Types',
+          ...initialProperties.map((property) => property.type).filter(Boolean),
+        ])
+      ),
     [initialProperties]
   )
   const areas = useMemo(
-    () => Array.from(new Set(['All Areas', ...initialProperties.map((property) => property.location)])),
+    () =>
+      Array.from(
+        new Set([
+          'All Areas',
+          ...initialProperties.map((property) => property.location).filter(Boolean),
+        ])
+      ),
     [initialProperties]
   )
 
