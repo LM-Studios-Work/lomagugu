@@ -49,7 +49,7 @@ export default function AboutPage() {
             {/* Text Content */}
             <div className="lg:col-span-7 space-y-6 text-[#444444] font-sans">
               <p className="text-lg leading-relaxed">
-                <strong className="text-foreground">Lomagugu Properties (Pty) Ltd</strong> is a proudly South African, Black woman-owned property company built around one simple belief: property is more than bricks and buildings — it is an opportunity to create value, build communities and transform lives.
+                <strong className="text-foreground">Lomagugu Properties (Pty) Ltd</strong> is a proudly South African, Black woman-owned property company built around one simple belief: property is more than bricks and buildings, it is an opportunity to create value, build communities and transform lives.
               </p>
               
               <p className="text-lg leading-relaxed">

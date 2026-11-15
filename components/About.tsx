@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { Globe, Anchor, RefreshCw } from 'lucide-react'
 
 const features = [
@@ -5,23 +8,25 @@ const features = [
     icon: Globe,
     title: 'Local Market Insight',
     description: 'Access properties backed by strong knowledge of South African markets.',
-    dark: false,
   },
   {
     icon: Anchor,
     title: 'Personalized Service',
     description: 'Get solutions for your unique needs.',
-    dark: false,
   },
   {
     icon: RefreshCw,
     title: 'Transparent Processes',
     description: 'Stay informed throughout the entire process.',
-    dark: true,
   },
 ]
 
 export default function About() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [pinnedIndex, setPinnedIndex] = useState<number>(2)
+
+  const activeIndex = hoveredIndex !== null ? hoveredIndex : pinnedIndex
+
   return (
     <section id="about" className="bg-background py-16 sm:py-20 lg:py-[58px]">
       <div className="w-full px-6 sm:px-10 lg:px-[56px]">
@@ -35,7 +40,7 @@ export default function About() {
               Your South African Property Partner.
             </h2>
             <p className="mb-[27px] max-w-[595px] font-sans text-[17px] font-normal leading-[1.32] tracking-normal text-[#444444]">
-              Lomagugu Properties (Pty) Ltd is a proudly South African, Black woman-owned property company built around one simple belief: property is more than bricks and buildings — it is an opportunity to create value, build communities and transform lives.
+              Lomagugu Properties (Pty) Ltd is a proudly South African, Black woman-owned property company built around one simple belief: property is more than bricks and buildings, it is an opportunity to create value, build communities and transform lives.
             </p>
             <a href="/about" className="inline-flex h-[42px] items-center justify-center bg-primary px-[24px] font-sans text-[15px] font-medium text-primary-foreground transition-colors hover:bg-primary/90">
               Read More About Us
@@ -43,37 +48,45 @@ export default function About() {
           </div>
 
           {/* Right */}
-          <div className="flex w-full flex-col gap-[12px] lg:w-full lg:justify-self-end">
-            {features.map(({ icon: Icon, title, description, dark }) => (
-              <div
-                key={title}
-                className={`min-h-[166px] px-[20px] py-[27px] ${
-                  dark
-                    ? 'bg-[#000000] text-dark-foreground'
-                    : 'bg-[#f7f7f7] text-card-foreground'
-                }`}
-              >
-                <Icon
-                  size={40}
-                  strokeWidth={1.75}
-                  className={`mb-[22px] ${dark ? 'text-white' : 'text-foreground'}`}
-                />
-                <p
-                  className={`mb-[5px] font-sans text-[22px] font-normal leading-none tracking-normal ${
-                    dark ? 'text-white' : 'text-foreground'
+          <div
+            className="flex w-full flex-col gap-[12px] lg:w-full lg:justify-self-end"
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            {features.map(({ icon: Icon, title, description }, index) => {
+              const isDark = activeIndex === index
+              return (
+                <div
+                  key={title}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onClick={() => setPinnedIndex(index)}
+                  className={`min-h-[166px] px-[20px] py-[27px] cursor-pointer transition-all duration-300 ease-in-out ${
+                    isDark
+                      ? 'bg-[#000000] text-dark-foreground'
+                      : 'bg-[#f7f7f7] text-card-foreground'
                   }`}
                 >
-                  {title}
-                </p>
-                <p
-                  className={`font-sans text-[17px] font-normal leading-[1.35] tracking-normal ${
-                    dark ? 'text-white/60' : 'text-[#444444]'
-                  }`}
-                >
-                  {description}
-                </p>
-              </div>
-            ))}
+                  <Icon
+                    size={40}
+                    strokeWidth={1.75}
+                    className={`mb-[22px] transition-colors duration-300 ${isDark ? 'text-white' : 'text-foreground'}`}
+                  />
+                  <p
+                    className={`mb-[5px] font-sans text-[22px] font-normal leading-none tracking-normal transition-colors duration-300 ${
+                      isDark ? 'text-white' : 'text-foreground'
+                    }`}
+                  >
+                    {title}
+                  </p>
+                  <p
+                    className={`font-sans text-[17px] font-normal leading-[1.35] tracking-normal transition-colors duration-300 ${
+                      isDark ? 'text-white/60' : 'text-[#444444]'
+                    }`}
+                  >
+                    {description}
+                  </p>
+                </div>
+              )
+            })}
           </div>
         </div>
       </div>

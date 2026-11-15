@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import {
   Home,
@@ -31,7 +32,6 @@ const primaryServices = [
     description:
       'We provide accurate market valuations for all residential property types. Whether you&apos;re selling, refinancing, or managing your estate, our comprehensive assessment accounts for property condition, location, and current market trends.',
     items: ['Single family homes', 'Townhouses & apartments', 'Residential land', 'Estate valuations'],
-    dark: false,
   },
   {
     icon: Landmark,
@@ -39,7 +39,6 @@ const primaryServices = [
     description:
       'Navigate municipal assessment processes with confidence. We help property owners evaluate council valuations, identify discrepancies, and build compelling cases for fair assessments based on current market data.',
     items: ['Property assessment', 'Tax valuation', 'Appeals support', 'Compliance reports'],
-    dark: false,
   },
   {
     icon: Building2,
@@ -47,7 +46,6 @@ const primaryServices = [
     description:
       'Strategic valuations designed for business decision-making. We analyse rental income, operational efficiency, and market demand to determine accurate values for offices, retail centres, warehouses, and mixed-use facilities.',
     items: ['Office buildings', 'Retail properties', 'Industrial facilities', 'Investment analysis'],
-    dark: true,
   },
 ]
 
@@ -76,37 +74,31 @@ const additionalServices = [
 /* ── Why choose us ────────────────────────────────────────────────────────── */
 const reasons = [
   {
-    n: '1',
     icon: Users,
     title: 'Expert Team',
     body: 'Our valuers hold professional credentials and bring years of local market expertise. Deep understanding of regional trends ensures your valuation reflects true market conditions.',
   },
   {
-    n: '2',
     icon: CheckCircle2,
     title: 'Accurate Assessments',
     body: 'Rigorous site evaluations combined with detailed market research guarantee precision. We examine comparable sales, investment metrics, and property-specific factors to deliver reliable valuations.',
   },
   {
-    n: '3',
     icon: ClipboardList,
     title: 'Professional Reports',
     body: 'Comprehensive documentation prepared to institutional standards. Our reports meet requirements for financial institutions, insurers, and legal applications with complete supporting analysis.',
   },
   {
-    n: '4',
     icon: Zap,
     title: 'Quick Turnaround',
     body: 'We recognise time-sensitive situations. Efficient processes ensure fast delivery of quality valuations when you need them, without sacrificing thoroughness or accuracy.',
   },
   {
-    n: '5',
     icon: Tag,
     title: 'Competitive Pricing',
     body: 'Clear, upfront pricing with no surprise fees. We offer competitive rates tailored to your valuation type and complexity, ensuring excellent value for professional service.',
   },
   {
-    n: '6',
     icon: HeadphonesIcon,
     title: 'Client Support',
     body: 'Responsive, knowledgeable staff available to explain findings and answer your valuation questions. We are here to ensure you understand the assessment and feel confident in the results.',
@@ -114,6 +106,10 @@ const reasons = [
 ]
 
 export default function ValuationsContent() {
+  const [hoveredPrimary, setHoveredPrimary] = useState<number | null>(null)
+  const [pinnedPrimary, setPinnedPrimary] = useState<number>(2)
+
+  const activePrimary = hoveredPrimary !== null ? hoveredPrimary : pinnedPrimary
   return (
     <>
       {/* ── Hero ────────────────────────────────────────────────────────── */}
@@ -162,7 +158,7 @@ export default function ValuationsContent() {
               Understanding your property&apos;s accurate market value is essential for making informed financial decisions. At Lomagugu Properties, our team of licensed and certified valuers provides unbiased, detailed assessments that protect your interests.
             </p>
             <p className="font-sans text-[17px] text-[#444444] leading-relaxed max-w-[520px]">
-              From residential needs to complex commercial evaluations, we deliver reliable valuations tailored to your specific requirements — whether for financing, taxation, insurance coverage, or dispute resolution.
+              From residential needs to complex commercial evaluations, we deliver reliable valuations tailored to your specific requirements, whether for financing, taxation, insurance coverage, or dispute resolution.
             </p>
           </div>
 
@@ -210,64 +206,72 @@ export default function ValuationsContent() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pb-14">
-          {primaryServices.map(({ icon: Icon, title, description, items, dark }) => (
-            <div
-              key={title}
-              className={`flex flex-col justify-between px-7 py-9 min-h-[460px] ${
-                dark ? 'bg-[#000000]' : 'bg-[#f7f7f7]'
-              }`}
-            >
-              <div>
-                <Icon
-                  size={38}
-                  strokeWidth={1.4}
-                  className={`mb-8 ${dark ? 'text-white' : 'text-foreground'}`}
-                />
-                <p
-                  className={`font-sans text-[22px] font-normal leading-snug mb-4 ${
-                    dark ? 'text-white' : 'text-foreground'
-                  }`}
-                >
-                  {title}
-                </p>
-                <p
-                  className={`font-sans text-sm leading-relaxed mb-7 ${
-                    dark ? 'text-white/55' : 'text-[#555555]'
-                  }`}
-                >
-                  {description.replace(/&apos;/g, "'")}
-                </p>
-                <ul className="flex flex-col gap-2 mb-8">
-                  {items.map((item) => (
-                    <li
-                      key={item}
-                      className={`flex items-center gap-2.5 font-sans text-xs ${
-                        dark ? 'text-white/60' : 'text-muted-foreground'
-                      }`}
-                    >
-                      <span
-                        className={`inline-block w-1 h-1 rounded-full shrink-0 ${
-                          dark ? 'bg-white/40' : 'bg-primary'
-                        }`}
-                      />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <Link
-                href="/contact"
-                className={`inline-flex items-center gap-2.5 font-sans text-xs font-semibold tracking-widest uppercase border px-5 py-3 transition-colors w-fit ${
-                  dark
-                    ? 'border-white/30 text-white hover:bg-white/10'
-                    : 'border-foreground/30 text-foreground hover:border-foreground'
+        <div
+          className="grid grid-cols-1 md:grid-cols-3 gap-3 pb-14"
+          onMouseLeave={() => setHoveredPrimary(null)}
+        >
+          {primaryServices.map(({ icon: Icon, title, description, items }, index) => {
+            const isDark = activePrimary === index
+            return (
+              <div
+                key={title}
+                onMouseEnter={() => setHoveredPrimary(index)}
+                onClick={() => setPinnedPrimary(index)}
+                className={`flex flex-col justify-between px-7 py-9 min-h-[460px] cursor-pointer transition-all duration-300 ease-in-out ${
+                  isDark ? 'bg-[#000000]' : 'bg-[#f7f7f7]'
                 }`}
               >
-                Get Valuation <ArrowRight size={12} strokeWidth={1.75} />
-              </Link>
-            </div>
-          ))}
+                <div>
+                  <Icon
+                    size={38}
+                    strokeWidth={1.4}
+                    className={`mb-8 transition-colors duration-300 ${isDark ? 'text-white' : 'text-foreground'}`}
+                  />
+                  <p
+                    className={`font-sans text-[22px] font-normal leading-snug mb-4 transition-colors duration-300 ${
+                      isDark ? 'text-white' : 'text-foreground'
+                    }`}
+                  >
+                    {title}
+                  </p>
+                  <p
+                    className={`font-sans text-sm leading-relaxed mb-7 transition-colors duration-300 ${
+                      isDark ? 'text-white/55' : 'text-[#555555]'
+                    }`}
+                  >
+                    {description.replace(/&apos;/g, "'")}
+                  </p>
+                  <ul className="flex flex-col gap-2 mb-8">
+                    {items.map((item) => (
+                      <li
+                        key={item}
+                        className={`flex items-center gap-2.5 font-sans text-xs transition-colors duration-300 ${
+                          isDark ? 'text-white/60' : 'text-muted-foreground'
+                        }`}
+                      >
+                        <span
+                          className={`inline-block w-1 h-1 rounded-full shrink-0 transition-colors duration-300 ${
+                            isDark ? 'bg-white/40' : 'bg-primary'
+                          }`}
+                        />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <Link
+                  href="/contact"
+                  className={`inline-flex items-center gap-2.5 font-sans text-xs font-semibold tracking-widest uppercase border px-5 py-3 transition-colors duration-300 w-fit ${
+                    isDark
+                      ? 'border-white/30 text-white hover:bg-white/10'
+                      : 'border-foreground/30 text-foreground hover:border-foreground'
+                  }`}
+                >
+                  Get Valuation <ArrowRight size={12} strokeWidth={1.75} />
+                </Link>
+              </div>
+            )
+          })}
         </div>
       </section>
 
@@ -315,11 +319,13 @@ export default function ValuationsContent() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {reasons.map(({ n, icon: Icon, title, body }) => (
-            <div key={n} className="border border-white/10 px-7 py-8 flex flex-col justify-between min-h-[220px]">
-              <div className="flex items-start justify-between mb-6">
+          {reasons.map(({ icon: Icon, title, body }) => (
+            <div
+              key={title}
+              className="border border-white/10 px-7 py-8 flex flex-col justify-between min-h-[220px] transition-colors duration-300 hover:border-white/25"
+            >
+              <div className="mb-6">
                 <Icon size={28} strokeWidth={1.4} className="text-primary" />
-                <span className="font-sans text-xs text-white/25 tracking-widest">{n.padStart(2, '0')}</span>
               </div>
               <div>
                 <p className="font-sans text-[18px] font-normal text-white leading-snug mb-2">

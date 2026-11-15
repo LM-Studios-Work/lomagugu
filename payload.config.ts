@@ -21,7 +21,11 @@ export default buildConfig({
   plugins: [
     s3Storage({
       collections: {
-        media: true,
+        media: {
+          generateFileURL: ({ filename, prefix }) => {
+            return `https://media.lomagugu.co.za/${prefix ? `${prefix}/` : ''}${filename}`
+          },
+        },
       },
       bucket: process.env.S3_BUCKET || '',
       config: {
