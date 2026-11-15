@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
 
 const mainLinks = [
   { label: 'Home', href: '/' },
@@ -20,28 +20,6 @@ const supportLinks = [
 export default function Footer() {
   return (
     <footer className="bg-black text-white border-t border-[#2c5f45]/30 font-sans">
-      {/* Top Section - Newsletter / Call to Action */}
-      <div className="border-b border-[#2c5f45]/30 bg-[#0d1f15]">
-        <div className="max-w-7xl mx-auto px-8 py-16 lg:flex lg:items-center lg:justify-between">
-          <div className="mb-8 lg:mb-0 lg:max-w-md">
-            <h3 className="text-2xl font-semibold text-white mb-2 tracking-tight">Stay updated</h3>
-            <p className="text-sm text-gray-300 leading-relaxed">
-              Join our newsletter for exclusive property listings, market insights, and real estate guidance in South Africa.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3 lg:w-96">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="bg-black border border-[#2c5f45]/50 text-white px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-[#499971] transition-all flex-grow text-sm"
-            />
-            <button className="bg-[#2c5f45] hover:bg-[#3a7a5a] text-white px-6 py-3 rounded-md font-medium text-sm transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
-              Subscribe <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer Links */}
       <div className="max-w-7xl mx-auto px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
